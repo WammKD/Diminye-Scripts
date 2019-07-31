@@ -165,7 +165,7 @@ case "$1" in
 		echo "left"
 
 		case $(getWindowProperty $WINDOW "_STATE") in
-			"such" | "found")
+			"such" | "found.")
 				storeGeometry $WINDOW
 
 				OB_border_left=$(getWindowProperty $WINDOW "_OB_BORDER_L")
