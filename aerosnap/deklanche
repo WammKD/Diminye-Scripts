@@ -257,18 +257,21 @@ case "$1" in
 				                 $margin_right                            -
 				                 $(getWindowProperty $WINDOW "_OFFSET_X") ))
 
+				# If we've gotten this far without the program quitting, we can set this
+				setPropertyString $WINDOW "_STATE" "JUST_RIGHT"
+
 				# Move window
 				wmctrl -r :ACTIVE: -b    add,maximized_vert                && \
 				wmctrl -r :ACTIVE: -b remove,maximized_horz                && \
 				wmctrl -r :ACTIVE: -e 0,"$x_position",0,"$window_width",-1
 				;;
-			"JUST_RIGHT")
+			"JUST_LEFT")
 				exit
 				;;
-			"TOP_RIGHT")
+			"TOP_LEFT")
 				exit
 				;;
-			"BOT_RIGHT")
+			"BOT_LEFT")
 				exit
 				;;
 			"JUST_TOP")
