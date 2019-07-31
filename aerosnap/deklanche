@@ -229,7 +229,61 @@ case "$1" in
 		esac
 		;;
 	-r|--right)
-		echo "right"
+		case $(getWindowProperty $WINDOW "_STATE") in
+			"such" | "found.")
+				storeGeometry $WINDOW
+
+				OB_border_right=$(getWindowProperty $WINDOW "_OB_BORDER_R")
+
+				# Provides $X_zero and $screenW
+				getScreenDimensions $WINDOW $(getWindowProperty $WINDOW "_MONITORS")
+
+				if
+					(( $MARGIN != 0 ))
+				then
+					if
+						(( $MARGIN <= $OB_border_right ))
+					then
+						margin_right="$OB_border_right"     # don't need OB margin
+					else
+						margin_right=$(( $MARGIN + $OB_border_right ))
+					fi
+				else
+					margin_right="$OB_border_right"       # add OB margin to right edge
+				fi
+
+				x_position=$(( ($screenW / 2) + $X_zero ))
+				window_width=$(( ($screenW / 2)                           -
+				                 $margin_right                            -
+				                 $(getWindowProperty $WINDOW "_OFFSET_X") ))
+
+				# Move window
+				wmctrl -r :ACTIVE: -b    add,maximized_vert                && \
+				wmctrl -r :ACTIVE: -b remove,maximized_horz                && \
+				wmctrl -r :ACTIVE: -e 0,"$x_position",0,"$window_width",-1
+				;;
+			"JUST_RIGHT")
+				exit
+				;;
+			"TOP_RIGHT")
+				exit
+				;;
+			"BOT_RIGHT")
+				exit
+				;;
+			"JUST_TOP")
+				exit
+				;;
+			"JUST_BOTTOM")
+				exit
+				;;
+			"MAXIMIZED")
+				exit
+				;;
+			*)
+				exit
+				;;
+		esac
 		;;
 	-u|--up)
 		echo "up"
