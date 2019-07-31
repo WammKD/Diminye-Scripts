@@ -48,6 +48,17 @@ function storeGeometry() {
 
 
 
+	eval $(xdotool getactivewindow getwindowgeometry --shell)
+
+	# Set initial geometry and position
+	setPropertyInteger "_INITIAL_DIMENSION_X"      "$X"
+	setPropertyInteger "_INITIAL_DIMENSION_Y"      "$Y"
+	setPropertyInteger "_INITIAL_DIMENSION_WIDTH"  "$WIDTH"
+	setPropertyInteger "_INITIAL_DIMENSION_HEIGHT" "$HEIGHT"
+
+
+
+
 case "$1" in
 	-l|--left)
 		echo "left"
