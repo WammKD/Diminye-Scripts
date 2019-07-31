@@ -174,15 +174,9 @@ case "$1" in
 				screen_dimens=$(getScreenDimensions $WINDOW $(getWindowProperty $WINDOW "_MONITORS"))
 
 				if
-					(( $MARGIN != 0 ))
+					(( $MARGIN != 0 )) && (( $MARGIN > $OB_border_left ))
 				then
-					if
-						(( $MARGIN <= $OB_border_left ))
-					then
-						x_position=$(( $OB_border_left + ${screen_dimens[0]} ))   # don't need OB margin
-					else
-						x_position=$(( $MARGIN + $OB_border_left + ${screen_dimens[0]} ))
-					fi
+					x_position=$(( $MARGIN + $OB_border_left + ${screen_dimens[0]} ))
 				else
 					x_position=$(( $OB_border_left + ${screen_dimens[0]} ))
 				fi
