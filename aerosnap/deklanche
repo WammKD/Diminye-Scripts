@@ -287,7 +287,50 @@ case "$1" in
 		esac
 		;;
 	-u|--up)
-		echo "up"
+		case $(getWindowProperty $WINDOW "_STATE") in
+			"such" | "found.")
+				storeGeometry $WINDOW
+
+				# Provides $valY and $valH
+				getScreenDimensions $WINDOW $(getWindowProperty $WINDOW "_MONITORS")
+
+				margin_top=$(( $MARGIN + $(getWindowProperty $WINDOW "_OB_MARGIN_T") ))
+				y_position=$(( $valY + $margin_top ))
+				window_height_top=$(( ($valH/2)                                   -
+				                      $(getWindowProperty $WINDOW "_OB_BORDER_T") -
+				                      $(getWindowProperty $WINDOW "_OB_BORDER_B") -
+				                      $margin_top                                 ))
+
+				# Move window
+				wmctrl -r :ACTIVE: -b remove,maximized_vert                      && \
+				wmctrl -r :ACTIVE: -b    add,maximized_horz                      && \
+				wmctrl -r :ACTIVE: -e 0,-1,"$y_position",-1,"$window_height_top"
+				;;
+			"JUST_LEFT")
+				exit
+				;;
+			"BOT_LEFT")
+				exit
+				;;
+			"JUST_RIGHT")
+				exit
+				;;
+			"BOT_RIGHT")
+				exit
+				;;
+			"JUST_TOP")
+				exit
+				;;
+			"JUST_BOTTOM")
+				exit
+				;;
+			"MAXIMIZED")
+				exit
+				;;
+			*)
+				exit
+				;;
+		esac
 		;;
 	-d|--down)
 		echo "down"
