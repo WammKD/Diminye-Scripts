@@ -165,6 +165,42 @@ WINDOW=$(xdotool getactivewindow)
 case "$1" in
 	-l|--left)
 		echo "left"
+
+		case $(getWindowProperty $WINDOW "_STATE") in
+			"such" | "found")
+				storeGeometry $WINDOW
+
+				OB_border_left=$(getWindowProperty $WINDOW "_OB_BORDER_L")
+				screen_dimens=$(getScreenDimensions $WINDOW $(getWindowProperty $WINDOW "_MONITORS"))
+
+				if
+					(( $MARGIN != 0 ))
+				then
+					if
+						(( $MARGIN <= $OB_border_left ))
+					then
+						x_position=$(( $OB_border_left + ${screen_dimens[0]} ))   # don't need OB margin
+					else
+						x_position=$(( $MARGIN + $OB_border_left + ${screen_dimens[0]} ))
+					fi
+				else
+					x_position=$(( $OB_border_left + ${screen_dimens[0]} ))
+				fi
+
+				WIN_WIDTH_L=$(( (${screen_dimens[1]} / 2)        -
+				                $x_position                      -
+				                $(getWindowProperty "_OFFSET_X") +
+				                ${screen_dimens[1]              ))
+
+				# Move window
+				wmctrl -r :ACTIVE: -b add,maximized_vert                && \
+				wmctrl -r :ACTIVE: -b remove,maximized_horz             && \
+				wmctrl -r :ACTIVE: -e 0,$x_position,0,"$WIN_WIDTH_L",-1
+				;;
+			*)
+				exit
+				;;
+		esac
 		;;
 	-r|--right)
 		echo "right"
