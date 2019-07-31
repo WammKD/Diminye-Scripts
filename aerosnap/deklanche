@@ -26,6 +26,28 @@ function setPropertyString() {
 	      -set "$property_name" "$property_value"
 }
 
+function storeGeometry() {
+	window_ID="$1"
+
+
+
+
+	MON=$(xrandr -q | grep -c " connected")
+
+	case $MON in
+		1 | 2 )
+			setPropertyInteger "_MONITORS" "$MON"
+			;;
+		3 | * )
+			echo "Script cannot deal with more than 2 monitors" >&2
+
+			exit
+			;;
+	esac
+
+
+
+
 case "$1" in
 	-l|--left)
 		echo "left"
