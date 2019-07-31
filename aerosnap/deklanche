@@ -179,11 +179,17 @@ case "$1" in
 				getScreenDimensions $WINDOW $(getWindowProperty $WINDOW "_MONITORS")
 
 				if
-					(( $MARGIN != 0 )) && (( $MARGIN > $OB_border_left ))
+					(( $MARGIN != 0 ))
 				then
-					x_position=$(( $MARGIN + $OB_border_left + $X_zero ))
+					if
+						(( $MARGIN <= $OB_border_left ))
+					then
+						x_position=$(( $OB_border_left + $X_zero ))
+					else
+						x_position=$(( $MARGIN + $OB_border_left + $X_zero ))
+					fi
 				else
-					x_position=$(( $OB_border_left + $X_zero ))
+					x_position=$(( $(getWindowProperty $WINDOW "_OB_MARGIN_L") + $X_zero ))
 				fi
 
 				WIN_WIDTH_L=$(( ($screenW / 2)                           -
