@@ -1,5 +1,31 @@
 #!/bin/bash
 
+function getWindowProperty() {
+	window_ID="$1"
+	property_name="$2"
+
+	echo $(xprop -id $window_ID $property_name | awk '{print $3}')
+}
+
+function setPropertyInteger() {
+	window_ID="$1"
+	property_name="$2"
+	property_value="$3"
+
+	xprop -id  "$window_ID"                       \
+	      -f   "$property_name" 32i               \
+	      -set "$property_name" "$property_value"
+}
+function setPropertyString() {
+	window_ID="$1"
+	property_name="$2"
+	property_value="$3"
+
+	xprop -id  "$window_ID"                       \
+	      -f   "$property_name" 8s                \
+	      -set "$property_name" "$property_value"
+}
+
 case "$1" in
 	-l|--left)
 		echo "left"
