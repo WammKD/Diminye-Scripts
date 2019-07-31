@@ -82,6 +82,25 @@ function storeGeometry() {
 
 
 
+	RC="$HOME/.config/openbox/rc.xml"
+
+	if
+		[[ -f "$RC" ]]
+	then
+		TAG="margins"
+		RCXML=$(sed -n "/<$TAG>/,/<\/$TAG>/p" "$RC")
+
+		setPropertyInteger "_OB_MARGIN_L" $(grep -oPm1 "(?<=<left>)[^<]+"   <<< "$RCXML")
+		setPropertyInteger "_OB_MARGIN_R" $(grep -oPm1 "(?<=<right>)[^<]+"  <<< "$RCXML")
+		setPropertyInteger "_OB_MARGIN_T" $(grep -oPm1 "(?<=<top>)[^<]+"    <<< "$RCXML")
+		setPropertyInteger "_OB_MARGIN_B" $(grep -oPm1 "(?<=<bottom>)[^<]+" <<< "$RCXML")
+	else
+		echo "$RC not found" >&2
+
+		exit 1
+	fi
+}
+
 case "$1" in
 	-l|--left)
 		echo "left"
