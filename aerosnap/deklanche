@@ -59,6 +59,29 @@ function storeGeometry() {
 
 
 
+	# WM sets window frame and border sizes
+	# Titlebar height depends on fontsize of Active titlebar
+	win_EXTENTS=$(xprop -id $window_ID _NET_FRAME_EXTENTS | awk ' {gsub(/,/,"");print $3,$4,$5,$6}')
+	read BORDER_L BORDER_R BORDER_T BORDER_B <<< "$win_EXTENTS"
+
+	setPropertyInteger "_OB_BORDER_L" "$BORDER_L"
+	setPropertyInteger "_OB_BORDER_R" "$BORDER_R"
+	setPropertyInteger "_OB_BORDER_T" "$BORDER_T"
+	setPropertyInteger "_OB_BORDER_B" "$BORDER_B"
+	setPropertyInteger "_OFFSET_X"    "$(($BORDER_L + $BORDER_R))"
+
+	# Use different corrections if window is decorated/undecorated
+	if
+		xprop -id $window_ID | grep -q _OB_WM_STATE_UNDECORATED
+	then
+	  setPropertyInteger "_OFFSET_Y" "$(($BORDER_T + $BORDER_B))"
+	else
+		setPropertyInteger "_OFFSET_Y" "$(($BORDER_T * 2))"
+	fi
+
+
+
+
 case "$1" in
 	-l|--left)
 		echo "left"
