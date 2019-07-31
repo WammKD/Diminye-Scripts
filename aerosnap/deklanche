@@ -105,8 +105,10 @@ function getScreenDimensions() {   # get net workarea, if panels are present
 	window_ID="$1"
 	number_of_monitors="$2"
 
-	vals=$(echo $(xprop -root _NET_WORKAREA) | awk '{gsub(/,/,"");print $3,$4,$5,$6}')
-	read valX valY valW valH <<< "$vals"    # X pos, Y pos, usable width, usable height
+
+
+	#    X pos, Y pos, usable width, usable height
+	read valX   valY   valW          valH          <<< $(echo $(xprop -root _NET_WORKAREA) | awk '{gsub(/,/,"");print $3,$4,$5,$6}')
 
 	desktopW=$(xrandr -q | awk '/Screen/ {print $8}')  # total desktop width
 
