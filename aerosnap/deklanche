@@ -143,8 +143,6 @@ function getScreenDimensions() {   # get net workarea, if panels are present
 		X_zero=$valX                            # window is on L monitor
 		screenW=$(( $screenW1 - $X_zero ))
 	fi
-
-	echo ($X_zero $screenW)
 }
 ####    END FUNCTIONS   ################################################
 
@@ -171,20 +169,22 @@ case "$1" in
 				storeGeometry $WINDOW
 
 				OB_border_left=$(getWindowProperty $WINDOW "_OB_BORDER_L")
-				screen_dimens=$(getScreenDimensions $WINDOW $(getWindowProperty $WINDOW "_MONITORS"))
+
+				# Provides $X_zero and $screenW
+				getScreenDimensions $WINDOW $(getWindowProperty $WINDOW "_MONITORS")
 
 				if
 					(( $MARGIN != 0 )) && (( $MARGIN > $OB_border_left ))
 				then
-					x_position=$(( $MARGIN + $OB_border_left + ${screen_dimens[0]} ))
+					x_position=$(( $MARGIN + $OB_border_left + $X_zero ))
 				else
-					x_position=$(( $OB_border_left + ${screen_dimens[0]} ))
+					x_position=$(( $OB_border_left + $X_zero ))
 				fi
 
-				WIN_WIDTH_L=$(( (${screen_dimens[1]} / 2)                -
+				WIN_WIDTH_L=$(( ($screenW / 2)                           -
 				                $x_position                              -
 				                $(getWindowProperty $WINDOW "_OFFSET_X") +
-				                ${screen_dimens[0]}                      ))
+				                $X_zero                                  ))
 
 				# If we've gotten this far without the program quitting, we can set this
 				setPropertyString $WINDOW "_STATE" "JUST_LEFT"
