@@ -1,0 +1,19 @@
+#!/bin/bash
+
+case "$1" in
+	-l|--left)
+		echo "left"
+		;;
+	-r|--right)
+		echo "right"
+		;;
+	-u|--up)
+		echo "up"
+		;;
+	-d|--down)
+		echo "down"
+		;;
+	*)
+		echo "help"
+		;;
+esac
