@@ -147,6 +147,21 @@ function getScreenDimensions() {   # get net workarea, if panels are present
 	echo ($X_zero $screenW)
 }
 ####    END FUNCTIONS   ################################################
+
+
+
+if
+	[[ $2 ]]
+then
+	MARGIN=$2
+else
+	MARGIN=0
+fi
+
+WINDOW=$(xdotool getactivewindow)
+
+
+
 case "$1" in
 	-l|--left)
 		echo "left"
