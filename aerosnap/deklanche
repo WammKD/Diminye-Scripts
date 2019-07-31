@@ -167,8 +167,6 @@ WINDOW=$(xdotool getactivewindow)
 
 case "$1" in
 	-l|--left)
-		echo "left"
-
 		case $(getWindowProperty $WINDOW "_STATE") in
 			"such" | "found.")
 				storeGeometry $WINDOW
