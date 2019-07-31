@@ -127,7 +127,9 @@ function get_screen_dimensions() {   # get net workarea, if panels are present
 function get_ActiveX() {      # X position of active window:
 	WINPOS=$(xwininfo -id $WINDOW | grep "Absolute upper-left X")
 
-	if [[ ${WINPOS##*' '} -ge $screenW1 ]];then # window is on R monitor
+	if
+		[[ ${WINPOS##*' '} -ge $screenW1 ]]
+	then # window is on R monitor
 		X_zero=$(( $desktopW - $screenW2 ))
 		panelR=$(( $desktopW - $valW - $valX ))
 		screenW=$(( $desktopW - $screenW1 - $panelR ))
@@ -369,8 +371,11 @@ get_prop "_SNAPPED" "SNAP"      #      "Flag" for left/right snapped
 case $SNAP in
 	"such" | "found." )    # xprop returns 'such' or 'found.' upon error
 		count_monitors
+
 		store_geometry
+
 		get_screen_dimensions
+
 		get_prop "_OFFSET_X" "adjust_X"
 		get_prop "_OFFSET_Y" "adjust_Y"
 		get_prop "_OB_BORDER_L" "OB_border_left"
