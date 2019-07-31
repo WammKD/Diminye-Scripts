@@ -36,7 +36,7 @@ function storeGeometry() {
 
 	case $MON in
 		1 | 2 )
-			setPropertyInteger "_MONITORS" "$MON"
+			setPropertyInteger $window_ID "_MONITORS" "$MON"
 			;;
 		3 | * )
 			echo "Script cannot deal with more than 2 monitors" >&2
@@ -51,10 +51,10 @@ function storeGeometry() {
 	eval $(xdotool getactivewindow getwindowgeometry --shell)
 
 	# Set initial geometry and position
-	setPropertyInteger "_INITIAL_DIMENSION_X"      "$X"
-	setPropertyInteger "_INITIAL_DIMENSION_Y"      "$Y"
-	setPropertyInteger "_INITIAL_DIMENSION_WIDTH"  "$WIDTH"
-	setPropertyInteger "_INITIAL_DIMENSION_HEIGHT" "$HEIGHT"
+	setPropertyInteger $window_ID "_INITIAL_DIMENSION_X"      "$X"
+	setPropertyInteger $window_ID "_INITIAL_DIMENSION_Y"      "$Y"
+	setPropertyInteger $window_ID "_INITIAL_DIMENSION_WIDTH"  "$WIDTH"
+	setPropertyInteger $window_ID "_INITIAL_DIMENSION_HEIGHT" "$HEIGHT"
 
 
 
@@ -64,19 +64,19 @@ function storeGeometry() {
 	win_EXTENTS=$(xprop -id $window_ID _NET_FRAME_EXTENTS | awk ' {gsub(/,/,"");print $3,$4,$5,$6}')
 	read BORDER_L BORDER_R BORDER_T BORDER_B <<< "$win_EXTENTS"
 
-	setPropertyInteger "_OB_BORDER_L" "$BORDER_L"
-	setPropertyInteger "_OB_BORDER_R" "$BORDER_R"
-	setPropertyInteger "_OB_BORDER_T" "$BORDER_T"
-	setPropertyInteger "_OB_BORDER_B" "$BORDER_B"
-	setPropertyInteger "_OFFSET_X"    "$(($BORDER_L + $BORDER_R))"
+	setPropertyInteger $window_ID "_OB_BORDER_L" "$BORDER_L"
+	setPropertyInteger $window_ID "_OB_BORDER_R" "$BORDER_R"
+	setPropertyInteger $window_ID "_OB_BORDER_T" "$BORDER_T"
+	setPropertyInteger $window_ID "_OB_BORDER_B" "$BORDER_B"
+	setPropertyInteger $window_ID "_OFFSET_X"    "$(($BORDER_L + $BORDER_R))"
 
 	# Use different corrections if window is decorated/undecorated
 	if
 		xprop -id $window_ID | grep -q _OB_WM_STATE_UNDECORATED
 	then
-	  setPropertyInteger "_OFFSET_Y" "$(($BORDER_T + $BORDER_B))"
+		setPropertyInteger $window_ID "_OFFSET_Y" "$(($BORDER_T + $BORDER_B))"
 	else
-		setPropertyInteger "_OFFSET_Y" "$(($BORDER_T * 2))"
+		setPropertyInteger $window_ID "_OFFSET_Y" "$(($BORDER_T * 2))"
 	fi
 
 
@@ -90,10 +90,10 @@ function storeGeometry() {
 		TAG="margins"
 		RCXML=$(sed -n "/<$TAG>/,/<\/$TAG>/p" "$RC")
 
-		setPropertyInteger "_OB_MARGIN_L" $(grep -oPm1 "(?<=<left>)[^<]+"   <<< "$RCXML")
-		setPropertyInteger "_OB_MARGIN_R" $(grep -oPm1 "(?<=<right>)[^<]+"  <<< "$RCXML")
-		setPropertyInteger "_OB_MARGIN_T" $(grep -oPm1 "(?<=<top>)[^<]+"    <<< "$RCXML")
-		setPropertyInteger "_OB_MARGIN_B" $(grep -oPm1 "(?<=<bottom>)[^<]+" <<< "$RCXML")
+		setPropertyInteger $window_ID "_OB_MARGIN_L" $(grep -oPm1 "(?<=<left>)[^<]+"   <<< "$RCXML")
+		setPropertyInteger $window_ID "_OB_MARGIN_R" $(grep -oPm1 "(?<=<right>)[^<]+"  <<< "$RCXML")
+		setPropertyInteger $window_ID "_OB_MARGIN_T" $(grep -oPm1 "(?<=<top>)[^<]+"    <<< "$RCXML")
+		setPropertyInteger $window_ID "_OB_MARGIN_B" $(grep -oPm1 "(?<=<bottom>)[^<]+" <<< "$RCXML")
 	else
 		echo "$RC not found" >&2
 
@@ -187,10 +187,10 @@ case "$1" in
 					x_position=$(( $OB_border_left + ${screen_dimens[0]} ))
 				fi
 
-				WIN_WIDTH_L=$(( (${screen_dimens[1]} / 2)        -
-				                $x_position                      -
-				                $(getWindowProperty "_OFFSET_X") +
-				                ${screen_dimens[1]}             ))
+				WIN_WIDTH_L=$(( (${screen_dimens[1]} / 2)                -
+				                $x_position                              -
+				                $(getWindowProperty $WINDOW "_OFFSET_X") +
+				                ${screen_dimens[1]}                      ))
 
 				# Move window
 				wmctrl -r :ACTIVE: -b add,maximized_vert                && \
