@@ -190,7 +190,7 @@ case "$1" in
 				WIN_WIDTH_L=$(( (${screen_dimens[1]} / 2)        -
 				                $x_position                      -
 				                $(getWindowProperty "_OFFSET_X") +
-				                ${screen_dimens[1]              ))
+				                ${screen_dimens[1]}             ))
 
 				# Move window
 				wmctrl -r :ACTIVE: -b add,maximized_vert                && \
