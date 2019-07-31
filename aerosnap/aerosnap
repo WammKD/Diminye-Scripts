@@ -1,0 +1,122 @@
+#!/bin/bash
+
+CACHE_DIR="/tmp"
+CACHE_PREFIX="aerosnap-"
+LEFT_NAME="left"
+RIGHT_NAME="right"
+MAX_NAME="maximized"
+
+windowDimentions() {
+  wmctrl -lpG | while read -a a; do
+                  w=${a[0]}
+		  if
+		    (($((16#${w:2}))==$1))
+		  then
+		    pX=$(xwininfo -id `xdotool getactivewindow` | grep "Absolute upper-left X" | cut -d \  -f 7)
+		    pY=$(xwininfo -id `xdotool getactivewindow` | grep "Absolute upper-left Y" | cut -d \  -f 7)
+		    echo -n "${a[3]} ${a[4]} ${a[5]} ${a[6]}"
+		    break
+		  fi
+                done
+}
+id=$(xdotool getactivewindow)
+DIMENS_FILE="$CACHE_DIR/$CACHE_PREFIX$id"
+LEFT_FILE="$CACHE_DIR/$CACHE_PREFIX$id-$LEFT_NAME"
+RIGHT_FILE="$CACHE_DIR/$CACHE_PREFIX$id-$RIGHT_NAME"
+MAX_FILE="$CACHE_DIR/$CACHE_PREFIX$id-$MAX_NAME"
+
+checkWindowDimentionsInequality() {
+  if
+    [ ! -e "$CACHE_DIR/$CACHE_PREFIX$id-$1" ]
+  then
+    return 0
+  else
+    if
+      [ "$(cat "$CACHE_DIR/$CACHE_PREFIX$id-$1")" !=\
+        "$(windowDimentions $id)" ]
+    then
+      echo "$1, true: current is $(windowDimentions $id) and other is $(cat "$CACHE_DIR/$CACHE_PREFIX$id-$1")" >> /tmp/aerosnap.log
+      return 0
+    else
+      echo "$1, false: current is $(windowDimentions $id) and other is $(cat "$CACHE_DIR/$CACHE_PREFIX$id-$1")" >> /tmp/aerosnap.log
+      return 1
+    fi
+  fi
+}
+
+if
+  $(checkWindowDimentionsInequality "left")
+then
+  if
+    $(checkWindowDimentionsInequality "right")
+  then
+    if
+      $(checkWindowDimentionsInequality "maximized")
+    then
+      echo "ENTERED THIS SHIT"
+      windowDimentions $id > "$DIMENS_FILE"
+    fi
+  fi
+fi
+
+while test $# -gt 0; do
+  case "$1" in
+    -h|--help)
+      echo "Help shit"
+      exit 0
+      ;;
+    -l|--left)
+      if
+	$(checkWindowDimentionsInequality "$LEFT_NAME")
+      then
+	echo "ENTERED THIS OTHER SHIT"
+	wmctrl -r :ACTIVE: -b add,maximized_vert && \
+	  wmctrl -r :ACTIVE: -b remove,maximized_horz && \
+	  wmctrl -r :ACTIVE: -e 1,0,0,$((`xdotool getdisplaygeometry | cut -d \  -f 1` / 2)),-1
+
+	if
+	  [ ! -e "$LEFT_FILE" ]
+	then
+	  windowDimentions $id > "$LEFT_FILE"
+	fi
+      else
+	wmctrl -r :ACTIVE: -b remove,maximized_vert && \
+	  wmctrl -r :ACTIVE: -e 1,`cat "$DIMENS_FILE" | cut -d \  -f 1`,`cat "$DIMENS_FILE" | cut -d \  -f 2`,`cat "$DIMENS_FILE" | cut -d \  -f 3`,`cat "$DIMENS_FILE" | cut -d \  -f 4`
+      fi
+
+      exit 0
+      ;;
+    -r|--right)
+      windowDimentions $id | cut -d \  -f 3,4
+      wmctrl -r :ACTIVE: -b add,maximized_vert && \
+	wmctrl -r :ACTIVE: -b remove,maximized_horz && \
+	wmctrl -r :ACTIVE: -e 1,$((`xdotool getdisplaygeometry | cut -d \  -f 1` / 2)),0,$((`xdotool getdisplaygeometry | cut -d \  -f 1` / 2)),-1
+
+      if
+	[ ! -e "$RIGHT_FILE" ]
+      then
+	windowDimentions $id > "$RIGHT_FILE"
+      fi
+
+      exit 0
+      ;;
+    -u|--up)
+      wmctrl -r :ACTIVE: -b add,maximized_vert && \
+	wmctrl -r :ACTIVE: -b add,maximized_horz
+
+      if
+	[ ! -e "$MAX_FILE" ]
+      then
+	windowDimentions $id > "$MAX_FILE"
+      fi
+
+      exit 0
+      ;;
+    *)
+      echo "aerosnap should take no arguments other than accepted flags and accepted
+arguements to said flags. Either invalid flags or a disproportionate number of
+arguments-to-flags were used."
+      exit 1
+      ;;
+  esac
+done
