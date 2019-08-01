@@ -196,7 +196,7 @@ case "$1" in
 				                $X_zero                                  ))
 
 				# If we've gotten this far without the program quitting, we can set this
-				setPropertyString $WINDOW "_STATE" "JUST_LEFT"
+				setPropertyString $WINDOW "_STATE" JUST_LEFT
 
 				# Move window
 				wmctrl -r :ACTIVE: -b    add,maximized_vert             && \
@@ -213,7 +213,7 @@ case "$1" in
 				exit
 				;;
 			"JUST_TOP")
-			  eval $(xdotool getactivewindow getwindowgeometry --shell)
+				eval $(xdotool getactivewindow getwindowgeometry --shell)
 
 				OB_border_left=$(getWindowProperty $WINDOW "_OB_BORDER_L")
 
@@ -288,7 +288,7 @@ case "$1" in
 				                 $(getWindowProperty $WINDOW "_OFFSET_X") ))
 
 				# If we've gotten this far without the program quitting, we can set this
-				setPropertyString $WINDOW "_STATE" "JUST_RIGHT"
+				setPropertyString $WINDOW "_STATE" JUST_RIGHT
 
 				# Move window
 				wmctrl -r :ACTIVE: -b    add,maximized_vert                && \
@@ -334,7 +334,7 @@ case "$1" in
 				                      $margin_top                                 ))
 
 				# If we've gotten this far without the program quitting, we can set this
-				setPropertyString $WINDOW "_STATE" "JUST_TOP"
+				setPropertyString $WINDOW "_STATE" JUST_TOP
 
 				# Move window
 				wmctrl -r :ACTIVE: -b remove,maximized_vert                      && \
@@ -383,7 +383,7 @@ case "$1" in
 				y_position=$(( $valH/2 + $valY ))
 
 				# If we've gotten this far without the program quitting, we can set this
-				setPropertyString $WINDOW "_STATE" "JUST_BOTTOM"
+				setPropertyString $WINDOW "_STATE" JUST_BOTTOM
 
 				# Move window
 				wmctrl -r :ACTIVE: -b remove,maximized_vert                         && \
