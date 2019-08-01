@@ -153,13 +153,11 @@ function getScreenDimensions() {   # get net workarea, if panels are present
 function getXcoordinateForLeft() {
 	window_ID="$1"
 	margin_passed_in="$2"
+	x_coord_of_monitor="$3"
 
 
 
 	OB_border_left=$(getWindowProperty $window_ID "_OB_BORDER_L")
-
-	# Provides $X_zero and $screenW
-	getScreenDimensions $window_ID $(getWindowProperty $window_ID "_MONITORS")
 
 	if
 		(( $margin_passed_in != 0 ))
@@ -167,12 +165,12 @@ function getXcoordinateForLeft() {
 		if
 			(( $margin_passed_in <= $OB_border_left ))
 		then
-			echo $((                     $OB_border_left + $X_zero ))
+			echo $((                     $OB_border_left + $x_coord_of_monitor ))
 		else
-			echo $(( $margin_passed_in + $OB_border_left + $X_zero ))
+			echo $(( $margin_passed_in + $OB_border_left + $x_coord_of_monitor ))
 		fi
 	else
-		echo $(( $(getWindowProperty $window_ID "_OB_MARGIN_L") + $X_zero ))
+		echo $(( $(getWindowProperty $window_ID "_OB_MARGIN_L") + $x_coord_of_monitor ))
 	fi
 }
 ####    END FUNCTIONS   ################################################
