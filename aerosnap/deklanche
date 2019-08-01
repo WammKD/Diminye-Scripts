@@ -173,6 +173,34 @@ function getXpositionForLeftSnap() {
 		echo $(( $(getWindowProperty $window_ID "_OB_MARGIN_L") + $x_coord_of_monitor ))
 	fi
 }
+
+function getWindowWidthForRightSnap() {
+	window_ID="$1"
+	margin_passed_in_by_user="$2"
+	monitor_width="$3"
+
+
+
+	OB_border_right=$(getWindowProperty $window_ID "_OB_BORDER_R")
+
+	if
+		(( $margin_passed_in_by_user != 0 ))
+	then
+		if
+			(( $margin_passed_in_by_user <= $OB_border_right ))
+		then
+			margin_right="$OB_border_right"     # don't need OB margin
+		else
+			margin_right=$(( $margin_passed_in_by_user + $OB_border_right ))
+		fi
+	else
+		margin_right="$OB_border_right"       # add OB margin to right edge
+	fi
+
+	echo $(( ($monitor_width / 2)                        -
+	         $margin_right                               -
+	         $(getWindowProperty $window_ID "_OFFSET_X") ))
+}
 ####    END FUNCTIONS   ################################################
 
 
@@ -261,29 +289,11 @@ case "$1" in
 			"such" | "found.")
 				storeGeometry $WINDOW
 
-				OB_border_right=$(getWindowProperty $WINDOW "_OB_BORDER_R")
-
 				# Provides $X_zero and $screenW
 				getScreenDimensions $WINDOW $(getWindowProperty $WINDOW "_MONITORS")
 
-				if
-					(( $MARGIN != 0 ))
-				then
-					if
-						(( $MARGIN <= $OB_border_right ))
-					then
-						margin_right="$OB_border_right"     # don't need OB margin
-					else
-						margin_right=$(( $MARGIN + $OB_border_right ))
-					fi
-				else
-					margin_right="$OB_border_right"       # add OB margin to right edge
-				fi
-
 				x_position=$(( ($screenW / 2) + $X_zero ))
-				window_width=$(( ($screenW / 2)                           -
-				                 $margin_right                            -
-				                 $(getWindowProperty $WINDOW "_OFFSET_X") ))
+				window_width=$(getWindowWidthForRightSnap $WINDOW $MARGIN $screenW)
 
 				# If we've gotten this far without the program quitting, we can set this
 				setPropertyString $WINDOW "_STATE" JUST_RIGHT
@@ -305,39 +315,12 @@ case "$1" in
 			"\"JUST_TOP\"" | "\"JUST_BOTTOM\"")
 				eval $(xdotool getactivewindow getwindowgeometry --shell)
 
-				OB_border_right=$(getWindowProperty $WINDOW "_OB_BORDER_R")
-
 				# Provides $X_zero and $screenW
 				getScreenDimensions $WINDOW $(getWindowProperty $WINDOW "_MONITORS")
 
-				if
-					(( $MARGIN != 0 ))
-				then
-					if
-						(( $MARGIN <= $OB_border_right ))
-					then
-						margin_right="$OB_border_right"     # don't need OB margin
-					else
-						margin_right=$(( $MARGIN + $OB_border_right ))
-					fi
-				else
-					margin_right="$OB_border_right"       # add OB margin to right edge
-				fi
-
 				x_position=$(( ($screenW / 2) + $X_zero ))
 				y_position=$(( $Y - $(getWindowProperty $WINDOW "_OFFSET_Y") ))
-				window_width=$(( ($screenW / 2)                           -
-				                 $margin_right                            -
-				                 $(getWindowProperty $WINDOW "_OFFSET_X") ))
-
-				# If we've gotten this far without the program quitting, we can set this
-				if
-					[[ $(getWindowProperty $WINDOW "_STATE") = "\"JUST_TOP\"" ]]
-				then
-					setPropertyString $WINDOW "_STATE" TOP_RIGHT
-				else
-					setPropertyString $WINDOW "_STATE" BOT_RIGHT
-				fi
+				window_width=$(getWindowWidthForRightSnap $WINDOW $MARGIN $screenW)
 
 				# Move window
 				wmctrl -r :ACTIVE: -b remove,maximized_horz                                   && \
