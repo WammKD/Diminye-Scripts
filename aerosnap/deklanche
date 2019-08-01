@@ -195,8 +195,10 @@ case "$1" in
 			"such" | "found.")
 				storeGeometry $WINDOW
 
-				x_position=$(getXcoordinateForLeft $WINDOW $MARGIN)
+				# Provides $X_zero and $screenW
+				getScreenDimensions $window_ID $(getWindowProperty $window_ID "_MONITORS")
 
+				x_position=$(getXcoordinateForLeft $WINDOW $MARGIN $X_zero)
 				WIN_WIDTH_L=$(( ($screenW / 2)                           -
 				                $x_position                              -
 				                $(getWindowProperty $WINDOW "_OFFSET_X") +
@@ -222,7 +224,10 @@ case "$1" in
 			"\"JUST_TOP\"" | "\"JUST_BOTTOM\"")
 				eval $(xdotool getactivewindow getwindowgeometry --shell)
 
-				x_position=$(getXcoordinateForLeft $WINDOW $MARGIN)
+				# Provides $X_zero and $screenW
+				getScreenDimensions $window_ID $(getWindowProperty $window_ID "_MONITORS")
+
+				x_position=$(getXcoordinateForLeft $WINDOW $MARGIN $X_zero)
 				y_position=$(( $Y - $(getWindowProperty $WINDOW "_OFFSET_Y") ))
 
 				WIN_WIDTH_L=$(( ($screenW / 2)                           -
