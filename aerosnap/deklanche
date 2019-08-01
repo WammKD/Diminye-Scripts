@@ -149,6 +149,32 @@ function getScreenDimensions() {   # get net workarea, if panels are present
 		screenW=$(( $screenW1 - $X_zero ))
 	fi
 }
+
+function getXcoordinateForLeft() {
+	window_ID="$1"
+	margin_passed_in="$2"
+
+
+
+	OB_border_left=$(getWindowProperty $window_ID "_OB_BORDER_L")
+
+	# Provides $X_zero and $screenW
+	getScreenDimensions $window_ID $(getWindowProperty $window_ID "_MONITORS")
+
+	if
+		(( $margin_passed_in != 0 ))
+	then
+		if
+			(( $margin_passed_in <= $OB_border_left ))
+		then
+			echo $((                     $OB_border_left + $X_zero ))
+		else
+			echo $(( $margin_passed_in + $OB_border_left + $X_zero ))
+		fi
+	else
+		echo $(( $(getWindowProperty $window_ID "_OB_MARGIN_L") + $X_zero ))
+	fi
+}
 ####    END FUNCTIONS   ################################################
 
 
@@ -171,24 +197,7 @@ case "$1" in
 			"such" | "found.")
 				storeGeometry $WINDOW
 
-				OB_border_left=$(getWindowProperty $WINDOW "_OB_BORDER_L")
-
-				# Provides $X_zero and $screenW
-				getScreenDimensions $WINDOW $(getWindowProperty $WINDOW "_MONITORS")
-
-				if
-					(( $MARGIN != 0 ))
-				then
-					if
-						(( $MARGIN <= $OB_border_left ))
-					then
-						x_position=$(( $OB_border_left + $X_zero ))
-					else
-						x_position=$(( $MARGIN + $OB_border_left + $X_zero ))
-					fi
-				else
-					x_position=$(( $(getWindowProperty $WINDOW "_OB_MARGIN_L") + $X_zero ))
-				fi
+				x_position=$(getXcoordinateForLeft $WINDOW $MARGIN)
 
 				WIN_WIDTH_L=$(( ($screenW / 2)                           -
 				                $x_position                              -
@@ -215,25 +224,7 @@ case "$1" in
 			"\"JUST_TOP\"" | "\"JUST_BOTTOM\"")
 				eval $(xdotool getactivewindow getwindowgeometry --shell)
 
-				OB_border_left=$(getWindowProperty $WINDOW "_OB_BORDER_L")
-
-				# Provides $X_zero and $screenW
-				getScreenDimensions $WINDOW $(getWindowProperty $WINDOW "_MONITORS")
-
-				if
-					(( $MARGIN != 0 ))
-				then
-					if
-						(( $MARGIN <= $OB_border_left ))
-					then
-						x_position=$(( $OB_border_left + $X_zero ))
-					else
-						x_position=$(( $MARGIN + $OB_border_left + $X_zero ))
-					fi
-				else
-					x_position=$(( $(getWindowProperty $WINDOW "_OB_MARGIN_L") + $X_zero ))
-				fi
-
+				x_position=$(getXcoordinateForLeft $WINDOW $MARGIN)
 				y_position=$(( $Y - $(getWindowProperty $WINDOW "_OFFSET_Y") ))
 
 				WIN_WIDTH_L=$(( ($screenW / 2)                           -
