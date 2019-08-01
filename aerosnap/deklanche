@@ -300,7 +300,22 @@ case "$1" in
 				setPropertyString $WINDOW "_STATE" BOT_LEFT
 				;;
 			"\"MAXIMIZED\"")
-				exit
+				# Provides $X_zero and $screenW
+				getScreenDimensions $window_ID $(getWindowProperty $window_ID "_MONITORS")
+
+				x_position=$(getXpositionForLeftSnap $WINDOW $MARGIN $X_zero)
+				WIN_WIDTH_L=$(( ($screenW / 2)                           -
+				                $x_position                              -
+				                $(getWindowProperty $WINDOW "_OFFSET_X") +
+				                $X_zero                                  ))
+
+				# If we've gotten this far without the program quitting, we can set this
+				setPropertyString $WINDOW "_STATE" JUST_LEFT
+
+				# Move window
+				wmctrl -r :ACTIVE: -b    add,maximized_vert             && \
+				wmctrl -r :ACTIVE: -b remove,maximized_horz             && \
+				wmctrl -r :ACTIVE: -e 0,$x_position,0,"$WIN_WIDTH_L",-1
 				;;
 			*)
 				exit
@@ -356,7 +371,19 @@ case "$1" in
 				setPropertyString $WINDOW "_STATE" BOT_RIGHT
 				;;
 			"\"MAXIMIZED\"")
-				exit
+				# Provides $X_zero and $screenW
+				getScreenDimensions $WINDOW $(getWindowProperty $WINDOW "_MONITORS")
+
+				x_position=$(( ($screenW / 2) + $X_zero ))
+				window_width=$(getWindowWidthForRightSnap $WINDOW $MARGIN $screenW)
+
+				# If we've gotten this far without the program quitting, we can set this
+				setPropertyString $WINDOW "_STATE" JUST_RIGHT
+
+				# Move window
+				wmctrl -r :ACTIVE: -b    add,maximized_vert                && \
+				wmctrl -r :ACTIVE: -b remove,maximized_horz                && \
+				wmctrl -r :ACTIVE: -e 0,"$x_position",0,"$window_width",-1
 				;;
 			*)
 				exit
@@ -426,7 +453,23 @@ case "$1" in
 				restoreDimensionGeometry $WINDOW
 				;;
 			"\"MAXIMIZED\"")
-				exit
+				# Provides $valY and $valH
+				getScreenDimensions $WINDOW $(getWindowProperty $WINDOW "_MONITORS")
+
+				margin_top=$(( $MARGIN + $(getWindowProperty $WINDOW "_OB_MARGIN_T") ))
+				y_position=$(( $valY + $margin_top ))
+				window_height_top=$(( ($valH/2)                                   -
+				                      $(getWindowProperty $WINDOW "_OB_BORDER_T") -
+				                      $(getWindowProperty $WINDOW "_OB_BORDER_B") -
+				                      $margin_top                                 ))
+
+				# If we've gotten this far without the program quitting, we can set this
+				setPropertyString $WINDOW "_STATE" JUST_TOP
+
+				# Move window
+				wmctrl -r :ACTIVE: -b remove,maximized_vert                      && \
+				wmctrl -r :ACTIVE: -b    add,maximized_horz                      && \
+				wmctrl -r :ACTIVE: -e 0,-1,"$y_position",-1,"$window_height_top"
 				;;
 			*)
 				exit
@@ -490,7 +533,23 @@ case "$1" in
 				restoreDimensionGeometry $WINDOW
 				;;
 			"\"MAXIMIZED\"")
-				exit
+				# Provides $valY and $valH
+				getScreenDimensions $WINDOW $(getWindowProperty $WINDOW "_MONITORS")
+
+				margin_top=$(( $MARGIN + $(getWindowProperty $WINDOW "_OB_MARGIN_T") ))
+				y_position=$(( $valY + $margin_top ))
+				window_height_top=$(( ($valH/2)                                   -
+				                      $(getWindowProperty $WINDOW "_OB_BORDER_T") -
+				                      $(getWindowProperty $WINDOW "_OB_BORDER_B") -
+				                      $margin_top                                 ))
+
+				# If we've gotten this far without the program quitting, we can set this
+				setPropertyString $WINDOW "_STATE" JUST_TOP
+
+				# Move window
+				wmctrl -r :ACTIVE: -b remove,maximized_vert                      && \
+				wmctrl -r :ACTIVE: -b    add,maximized_horz                      && \
+				wmctrl -r :ACTIVE: -e 0,-1,"$y_position",-1,"$window_height_top"
 				;;
 			*)
 				exit
