@@ -203,16 +203,16 @@ case "$1" in
 				wmctrl -r :ACTIVE: -b remove,maximized_horz             && \
 				wmctrl -r :ACTIVE: -e 0,$x_position,0,"$WIN_WIDTH_L",-1
 				;;
-			"JUST_RIGHT")
+			"\"JUST_RIGHT\"")
 				exit
 				;;
-			"TOP_RIGHT")
+			"\"TOP_RIGHT\"")
 				exit
 				;;
-			"BOT_RIGHT")
+			"\"BOT_RIGHT\"")
 				exit
 				;;
-			"JUST_TOP" | "JUST_BOTTOM")
+			"\"JUST_TOP\"" | "\"JUST_BOTTOM\"")
 				eval $(xdotool getactivewindow getwindowgeometry --shell)
 
 				OB_border_left=$(getWindowProperty $WINDOW "_OB_BORDER_L")
@@ -243,7 +243,7 @@ case "$1" in
 
 				# If we've gotten this far without the program quitting, we can set this
 				if
-					[[ $(getWindowProperty $WINDOW "_STATE") = "JUST_TOP" ]]
+					[[ $(getWindowProperty $WINDOW "_STATE") = "\"JUST_TOP\"" ]]
 				then
 					setPropertyString $WINDOW "_STATE" TOP_LEFT
 				else
@@ -254,7 +254,7 @@ case "$1" in
 				wmctrl -r :ACTIVE: -b remove,maximized_horz                                  && \
 				wmctrl -r :ACTIVE: -e 0,"$x_position","$y_position","$WIN_WIDTH_L","$HEIGHT"
 				;;
-			"MAXIMIZED")
+			"\"MAXIMIZED\"")
 				exit
 				;;
 			*)
@@ -299,16 +299,16 @@ case "$1" in
 				wmctrl -r :ACTIVE: -b remove,maximized_horz                && \
 				wmctrl -r :ACTIVE: -e 0,"$x_position",0,"$window_width",-1
 				;;
-			"JUST_LEFT")
+			"\"JUST_LEFT\"")
 				exit
 				;;
-			"TOP_LEFT")
+			"\"TOP_LEFT\"")
 				exit
 				;;
-			"BOT_LEFT")
+			"\"BOT_LEFT\"")
 				exit
 				;;
-			"JUST_TOP" | "JUST_BOTTOM")
+			"\"JUST_TOP\"" | "\"JUST_BOTTOM\"")
 				eval $(xdotool getactivewindow getwindowgeometry --shell)
 
 				OB_border_right=$(getWindowProperty $WINDOW "_OB_BORDER_R")
@@ -338,7 +338,7 @@ case "$1" in
 
 				# If we've gotten this far without the program quitting, we can set this
 				if
-					[[ $(getWindowProperty $WINDOW "_STATE") = "JUST_TOP" ]]
+					[[ $(getWindowProperty $WINDOW "_STATE") = "\"JUST_TOP\"" ]]
 				then
 					setPropertyString $WINDOW "_STATE" TOP_RIGHT
 				else
@@ -349,7 +349,7 @@ case "$1" in
 				wmctrl -r :ACTIVE: -b remove,maximized_horz                                   && \
 				wmctrl -r :ACTIVE: -e 0,"$x_position","$y_position","$window_width","$HEIGHT"
 				;;
-			"MAXIMIZED")
+			"\"MAXIMIZED\"")
 				exit
 				;;
 			*)
@@ -380,25 +380,25 @@ case "$1" in
 				wmctrl -r :ACTIVE: -b    add,maximized_horz                      && \
 				wmctrl -r :ACTIVE: -e 0,-1,"$y_position",-1,"$window_height_top"
 				;;
-			"JUST_LEFT")
+			"\"JUST_LEFT\"")
 				exit
 				;;
-			"BOT_LEFT")
+			"\"BOT_LEFT\"")
 				exit
 				;;
-			"JUST_RIGHT")
+			"\"JUST_RIGHT\"")
 				exit
 				;;
-			"BOT_RIGHT")
+			"\"BOT_RIGHT\"")
 				exit
 				;;
-			"JUST_TOP")
+			"\"JUST_TOP\"")
 				exit
 				;;
-			"JUST_BOTTOM")
+			"\"JUST_BOTTOM\"")
 				exit
 				;;
-			"MAXIMIZED")
+			"\"MAXIMIZED\"")
 				exit
 				;;
 			*)
@@ -429,22 +429,22 @@ case "$1" in
 				wmctrl -r :ACTIVE: -b    add,maximized_horz                         && \
 				wmctrl -r :ACTIVE: -e 0,-1,"$y_position",-1,"$window_height_bottom"
 				;;
-			"JUST_LEFT")
+			"\"JUST_LEFT\"")
 				exit
 				;;
-			"TOP_LEFT")
+			"\"TOP_LEFT\"")
 				exit
 				;;
-			"JUST_RIGHT")
+			"\"JUST_RIGHT\"")
 				exit
 				;;
-			"TOP_RIGHT")
+			"\"TOP_RIGHT\"")
 				exit
 				;;
-			"JUST_TOP")
+			"\"JUST_TOP\"")
 				exit
 				;;
-			"MAXIMIZED")
+			"\"MAXIMIZED\"")
 				exit
 				;;
 			*)
