@@ -360,8 +360,6 @@ case "$1" in
 				wmctrl -r :ACTIVE: -e 0,-1,"$y_position",-1,"$window_height_top"
 				;;
 			"\"JUST_LEFT\"" | "\"JUST_RIGHT\"")
-				eval $(xdotool getactivewindow getwindowgeometry --shell)
-
 				# Provides $valY and $valH
 				getScreenDimensions $WINDOW $(getWindowProperty $WINDOW "_MONITORS")
 
