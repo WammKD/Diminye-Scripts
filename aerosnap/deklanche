@@ -234,6 +234,8 @@ case "$1" in
 					x_position=$(( $(getWindowProperty $WINDOW "_OB_MARGIN_L") + $X_zero ))
 				fi
 
+				y_position=$(( $Y - $(getWindowProperty $WINDOW "_OFFSET_Y") ))
+
 				WIN_WIDTH_L=$(( ($screenW / 2)                           -
 				                $x_position                              -
 				                $(getWindowProperty $WINDOW "_OFFSET_X") +
@@ -243,12 +245,11 @@ case "$1" in
 				setPropertyString $WINDOW "_STATE" "TOP_LEFT"
 
 				# Move window
-				wmctrl -r :ACTIVE: -b remove,maximized_horz                                    && \
-				wmctrl -r :ACTIVE: -e 0,"$x_position","$Y","$(( $WIN_WIDTH_L / 2 ))","$HEIGHT"
-				exit
 				;;
 			"JUST_BOTTOM")
 				exit
+				wmctrl -r :ACTIVE: -b remove,maximized_horz                                  && \
+				wmctrl -r :ACTIVE: -e 0,"$x_position","$y_position","$WIN_WIDTH_L","$HEIGHT"
 				;;
 			"MAXIMIZED")
 				exit
