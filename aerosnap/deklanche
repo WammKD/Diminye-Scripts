@@ -253,22 +253,18 @@ case "$1" in
 				wmctrl -r :ACTIVE: -b add,maximized_horz
 				;;
 			"\"JUST_TOP\"" | "\"JUST_BOTTOM\"")
-				eval $(xdotool getactivewindow getwindowgeometry --shell)
-
 				# Provides $X_zero and $screenW
 				getScreenDimensions $window_ID $(getWindowProperty $window_ID "_MONITORS")
 
 				x_position=$(getXpositionForLeftSnap $WINDOW $MARGIN $X_zero)
-				y_position=$(( $Y - $(getWindowProperty $WINDOW "_OFFSET_Y") ))
-
 				WIN_WIDTH_L=$(( ($screenW / 2)                           -
 				                $x_position                              -
 				                $(getWindowProperty $WINDOW "_OFFSET_X") +
 				                $X_zero                                  ))
 
 				# Move window
-				wmctrl -r :ACTIVE: -b remove,maximized_horz                                  && \
-				wmctrl -r :ACTIVE: -e 0,"$x_position","$y_position","$WIN_WIDTH_L","$HEIGHT"
+				wmctrl -r :ACTIVE: -b remove,maximized_horz                && \
+				wmctrl -r :ACTIVE: -e 0,"$x_position",-1,"$WIN_WIDTH_L",-1
 				;;&
 			"\"JUST_TOP\"")
 				setPropertyString $WINDOW "_STATE" TOP_LEFT
@@ -316,18 +312,15 @@ case "$1" in
 				wmctrl -r :ACTIVE: -b add,maximized_horz
 				;;
 			"\"JUST_TOP\"" | "\"JUST_BOTTOM\"")
-				eval $(xdotool getactivewindow getwindowgeometry --shell)
-
 				# Provides $X_zero and $screenW
 				getScreenDimensions $WINDOW $(getWindowProperty $WINDOW "_MONITORS")
 
 				x_position=$(( ($screenW / 2) + $X_zero ))
-				y_position=$(( $Y - $(getWindowProperty $WINDOW "_OFFSET_Y") ))
 				window_width=$(getWindowWidthForRightSnap $WINDOW $MARGIN $screenW)
 
 				# Move window
-				wmctrl -r :ACTIVE: -b remove,maximized_horz                                   && \
-				wmctrl -r :ACTIVE: -e 0,"$x_position","$y_position","$window_width","$HEIGHT"
+				wmctrl -r :ACTIVE: -b remove,maximized_horz                 && \
+				wmctrl -r :ACTIVE: -e 0,"$x_position",-1,"$window_width",-1
 				;;&
 			"\"JUST_TOP\"")
 				setPropertyString $WINDOW "_STATE" TOP_RIGHT
