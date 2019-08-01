@@ -417,7 +417,10 @@ case "$1" in
 				wmctrl -r :ACTIVE: -b add,maximized_vert
 				;;
 			"\"JUST_TOP\"")
-				exit
+				setPropertyString $WINDOW "_STATE" MAXIMIZED
+
+				wmctrl -r :ACTIVE: -b add,maximized_vert && \
+				wmctrl -r :ACTIVE: -b add,maximized_horz
 				;;
 			"\"JUST_BOTTOM\"")
 				restoreDimensionGeometry $WINDOW
