@@ -244,10 +244,13 @@ case "$1" in
 				exit
 				;;
 			"\"TOP_RIGHT\"")
-				exit
-				;;
+				setPropertyString $WINDOW "_STATE" JUST_TOP
+				;;&
 			"\"BOT_RIGHT\"")
-				exit
+				setPropertyString $WINDOW "_STATE" JUST_BOTTOM
+				;;&
+			"\"TOP_RIGHT\"" | "\"BOT_RIGHT\"")
+				wmctrl -r :ACTIVE: -b add,maximized_horz
 				;;
 			"\"JUST_TOP\"" | "\"JUST_BOTTOM\"")
 				eval $(xdotool getactivewindow getwindowgeometry --shell)
@@ -304,10 +307,13 @@ case "$1" in
 				exit
 				;;
 			"\"TOP_LEFT\"")
-				exit
-				;;
+				setPropertyString $WINDOW "_STATE" JUST_TOP
+				;;&
 			"\"BOT_LEFT\"")
-				exit
+				setPropertyString $WINDOW "_STATE" JUST_BOTTOM
+				;;&
+			"\"TOP_LEFT\"" | "\"BOT_LEFT\"")
+				wmctrl -r :ACTIVE: -b add,maximized_horz
 				;;
 			"\"JUST_TOP\"" | "\"JUST_BOTTOM\"")
 				eval $(xdotool getactivewindow getwindowgeometry --shell)
