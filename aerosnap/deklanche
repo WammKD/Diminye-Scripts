@@ -267,7 +267,7 @@ case "$1" in
 				wmctrl -r :ACTIVE: -e 0,$x_position,0,"$WIN_WIDTH_L",-1
 				;;
 			"\"JUST_RIGHT\"")
-				exit
+			  restoreDimensionGeometry $WINDOW
 				;;
 			"\"TOP_RIGHT\"")
 				setPropertyString $WINDOW "_STATE" JUST_TOP
@@ -326,7 +326,7 @@ case "$1" in
 				wmctrl -r :ACTIVE: -e 0,"$x_position",0,"$window_width",-1
 				;;
 			"\"JUST_LEFT\"")
-				exit
+				restoreDimensionGeometry $WINDOW
 				;;
 			"\"TOP_LEFT\"")
 				setPropertyString $WINDOW "_STATE" JUST_TOP
@@ -419,7 +419,7 @@ case "$1" in
 				exit
 				;;
 			"\"JUST_BOTTOM\"")
-				exit
+				restoreDimensionGeometry $WINDOW
 				;;
 			"\"MAXIMIZED\"")
 				exit
@@ -483,7 +483,7 @@ case "$1" in
 				wmctrl -r :ACTIVE: -b add,maximized_vert
 				;;
 			"\"JUST_TOP\"")
-				exit
+				restoreDimensionGeometry $WINDOW
 				;;
 			"\"MAXIMIZED\"")
 				exit
