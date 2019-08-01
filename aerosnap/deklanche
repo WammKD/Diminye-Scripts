@@ -150,7 +150,7 @@ function getScreenDimensions() {   # get net workarea, if panels are present
 	fi
 }
 
-function getXcoordinateForLeft() {
+function getXpositionForLeftSnap() {
 	window_ID="$1"
 	margin_passed_in="$2"
 	x_coord_of_monitor="$3"
@@ -198,7 +198,7 @@ case "$1" in
 				# Provides $X_zero and $screenW
 				getScreenDimensions $window_ID $(getWindowProperty $window_ID "_MONITORS")
 
-				x_position=$(getXcoordinateForLeft $WINDOW $MARGIN $X_zero)
+				x_position=$(getXpositionForLeftSnap $WINDOW $MARGIN $X_zero)
 				WIN_WIDTH_L=$(( ($screenW / 2)                           -
 				                $x_position                              -
 				                $(getWindowProperty $WINDOW "_OFFSET_X") +
@@ -227,7 +227,7 @@ case "$1" in
 				# Provides $X_zero and $screenW
 				getScreenDimensions $window_ID $(getWindowProperty $window_ID "_MONITORS")
 
-				x_position=$(getXcoordinateForLeft $WINDOW $MARGIN $X_zero)
+				x_position=$(getXpositionForLeftSnap $WINDOW $MARGIN $X_zero)
 				y_position=$(( $Y - $(getWindowProperty $WINDOW "_OFFSET_Y") ))
 
 				WIN_WIDTH_L=$(( ($screenW / 2)                           -
