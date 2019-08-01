@@ -263,18 +263,15 @@ case "$1" in
 				                $(getWindowProperty $WINDOW "_OFFSET_X") +
 				                $X_zero                                  ))
 
-				# If we've gotten this far without the program quitting, we can set this
-				if
-					[[ $(getWindowProperty $WINDOW "_STATE") = "\"JUST_TOP\"" ]]
-				then
-					setPropertyString $WINDOW "_STATE" TOP_LEFT
-				else
-					setPropertyString $WINDOW "_STATE" BOT_LEFT
-				fi
-
 				# Move window
 				wmctrl -r :ACTIVE: -b remove,maximized_horz                                  && \
 				wmctrl -r :ACTIVE: -e 0,"$x_position","$y_position","$WIN_WIDTH_L","$HEIGHT"
+				;;&
+			"\"JUST_TOP\"")
+				setPropertyString $WINDOW "_STATE" TOP_LEFT
+				;;&
+			"\"JUST_BOTTOM\"")
+				setPropertyString $WINDOW "_STATE" BOT_LEFT
 				;;
 			"\"MAXIMIZED\"")
 				exit
