@@ -212,7 +212,7 @@ case "$1" in
 			"BOT_RIGHT")
 				exit
 				;;
-			"JUST_TOP")
+			"JUST_TOP" | "JUST_BOTTOM")
 				eval $(xdotool getactivewindow getwindowgeometry --shell)
 
 				OB_border_left=$(getWindowProperty $WINDOW "_OB_BORDER_L")
@@ -242,12 +242,15 @@ case "$1" in
 				                $X_zero                                  ))
 
 				# If we've gotten this far without the program quitting, we can set this
-				setPropertyString $WINDOW "_STATE" "TOP_LEFT"
+				if
+					[[ $(getWindowProperty $WINDOW "_STATE") = "JUST_TOP" ]]
+				then
+					setPropertyString $WINDOW "_STATE" TOP_LEFT
+				else
+					setPropertyString $WINDOW "_STATE" BOT_LEFT
+				fi
 
 				# Move window
-				;;
-			"JUST_BOTTOM")
-				exit
 				wmctrl -r :ACTIVE: -b remove,maximized_horz                                  && \
 				wmctrl -r :ACTIVE: -e 0,"$x_position","$y_position","$WIN_WIDTH_L","$HEIGHT"
 				;;
