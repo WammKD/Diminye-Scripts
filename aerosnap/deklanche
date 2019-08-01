@@ -199,7 +199,7 @@ case "$1" in
 				setPropertyString $WINDOW "_STATE" "JUST_LEFT"
 
 				# Move window
-				wmctrl -r :ACTIVE: -b add,maximized_vert                && \
+				wmctrl -r :ACTIVE: -b    add,maximized_vert             && \
 				wmctrl -r :ACTIVE: -b remove,maximized_horz             && \
 				wmctrl -r :ACTIVE: -e 0,$x_position,0,"$WIN_WIDTH_L",-1
 				;;
