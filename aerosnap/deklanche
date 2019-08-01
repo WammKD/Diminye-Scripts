@@ -101,6 +101,32 @@ function storeGeometry() {
 	fi
 }
 
+function restoreDimensionGeometry() {
+	window_ID="$1"
+
+
+
+	wmctrl -r :ACTIVE: -b remove,maximized_vert && \
+	wmctrl -r :ACTIVE: -b remove,maximized_horz && \
+	wmctrl -r :ACTIVE: -e 0,                                                             \
+	                      $(( $(getWindowProperty $window_ID "_INITIAL_DIMENSION_X") -
+	                          $(getWindowProperty $window_ID "_OFFSET_X")            )), \
+	                      $(( $(getWindowProperty $window_ID "_INITIAL_DIMENSION_Y") -
+	                          $(getWindowProperty $window_ID "_OFFSET_Y")            )), \
+	                      $(getWindowProperty $window_ID "_INITIAL_DIMENSION_WIDTH"),\
+	                      $(getWindowProperty $window_ID "_INITIAL_DIMENSION_HEIGHT")
+
+	geom=(_MONITORS            _STATE                   _INITIAL_DIMENSION_X      \
+	      _INITIAL_DIMENSION_Y _INITIAL_DIMENSION_WIDTH _INITIAL_DIMENSION_HEIGHT \
+	      _OFFSET_X            _OFFSET_Y                _OB_BORDER_L              \
+	      _OB_BORDER_R         _OB_BORDER_T             _OB_BORDER_B              \
+	      _OB_MARGIN_L         _OB_MARGIN_R             _OB_MARGIN_T              _OB_MARGIN_B)
+
+	for g in ${geom[@]}; do
+		xprop -id $window_ID -remove $g
+	done
+}
+
 function getScreenDimensions() {   # get net workarea, if panels are present
 	window_ID="$1"
 	number_of_monitors="$2"
