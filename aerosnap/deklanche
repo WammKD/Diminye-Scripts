@@ -381,10 +381,13 @@ case "$1" in
 				setPropertyString $WINDOW "_STATE" TOP_RIGHT
 				;;
 			"\"BOT_LEFT\"")
-				exit
-				;;
+				setPropertyString $WINDOW "_STATE" JUST_LEFT
+				;;&
 			"\"BOT_RIGHT\"")
-				exit
+				setPropertyString $WINDOW "_STATE" JUST_RIGHT
+				;;&
+			"\"BOT_LEFT\"" | "\"BOT_RIGHT\"")
+				wmctrl -r :ACTIVE: -b add,maximized_vert
 				;;
 			"\"JUST_TOP\"")
 				exit
@@ -445,10 +448,13 @@ case "$1" in
 				setPropertyString $WINDOW "_STATE" BOT_RIGHT
 				;;
 			"\"TOP_LEFT\"")
-				exit
-				;;
+				setPropertyString $WINDOW "_STATE" JUST_LEFT
+				;;&
 			"\"TOP_RIGHT\"")
-				exit
+				setPropertyString $WINDOW "_STATE" JUST_RIGHT
+				;;&
+			"\"TOP_LEFT\"" | "\"TOP_RIGHT\"")
+				wmctrl -r :ACTIVE: -b add,maximized_vert
 				;;
 			"\"JUST_TOP\"")
 				exit
