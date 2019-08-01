@@ -322,6 +322,12 @@ case "$1" in
 				# Move window
 				wmctrl -r :ACTIVE: -b remove,maximized_horz                                   && \
 				wmctrl -r :ACTIVE: -e 0,"$x_position","$y_position","$window_width","$HEIGHT"
+				;;&
+			"\"JUST_TOP\"")
+				setPropertyString $WINDOW "_STATE" TOP_RIGHT
+				;;&
+			"\"JUST_BOTTOM\"")
+				setPropertyString $WINDOW "_STATE" BOT_RIGHT
 				;;
 			"\"MAXIMIZED\"")
 				exit
