@@ -348,9 +348,9 @@ case "$1" in
 				y_position=$(( $valH/2 + $valY ))
 
 				# Move window
-				wmctrl -r :ACTIVE: -b remove,maximized_vert                        && \
-				wmctrl -r :ACTIVE: -b    add,maximized_horz                        && \
-				wmctrl -r :ACTIVE: -e 0,-1,"$y_position",-1,"$windw_height_bottom"
+				wmctrl -r :ACTIVE: -b remove,maximized_vert                         && \
+				wmctrl -r :ACTIVE: -b    add,maximized_horz                         && \
+				wmctrl -r :ACTIVE: -e 0,-1,"$y_position",-1,"$window_height_bottom"
 				;;
 			"JUST_LEFT")
 				exit
