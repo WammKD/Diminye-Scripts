@@ -215,9 +215,36 @@ case "$1" in
 			"JUST_TOP")
 			  eval $(xdotool getactivewindow getwindowgeometry --shell)
 
+				OB_border_left=$(getWindowProperty $WINDOW "_OB_BORDER_L")
+
+				# Provides $X_zero and $screenW
+				getScreenDimensions $WINDOW $(getWindowProperty $WINDOW "_MONITORS")
+
+				if
+					(( $MARGIN != 0 ))
+				then
+					if
+						(( $MARGIN <= $OB_border_left ))
+					then
+						x_position=$(( $OB_border_left + $X_zero ))
+					else
+						x_position=$(( $MARGIN + $OB_border_left + $X_zero ))
+					fi
+				else
+					x_position=$(( $(getWindowProperty $WINDOW "_OB_MARGIN_L") + $X_zero ))
+				fi
+
+				WIN_WIDTH_L=$(( ($screenW / 2)                           -
+				                $x_position                              -
+				                $(getWindowProperty $WINDOW "_OFFSET_X") +
+				                $X_zero                                  ))
+
+				# If we've gotten this far without the program quitting, we can set this
+				setPropertyString $WINDOW "_STATE" "TOP_LEFT"
+
 				# Move window
-				wmctrl -r :ACTIVE: -b remove,maximized_horz           && \
-				wmctrl -r :ACTIVE: -e 0,"$X",0,"$(( $WIDTH / 2 ))",-1
+				wmctrl -r :ACTIVE: -b remove,maximized_horz                                    && \
+				wmctrl -r :ACTIVE: -e 0,"$x_position","$Y","$(( $WIN_WIDTH_L / 2 ))","$HEIGHT"
 				exit
 				;;
 			"JUST_BOTTOM")
