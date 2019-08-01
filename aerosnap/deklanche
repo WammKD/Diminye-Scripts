@@ -106,15 +106,16 @@ function restoreDimensionGeometry() {
 
 
 
-	wmctrl -r :ACTIVE: -b remove,maximized_vert && \
-	wmctrl -r :ACTIVE: -b remove,maximized_horz && \
-	wmctrl -r :ACTIVE: -e 0,                                                             \
-	                      $(( $(getWindowProperty $window_ID "_INITIAL_DIMENSION_X") -
-	                          $(getWindowProperty $window_ID "_OFFSET_X")            )), \
-	                      $(( $(getWindowProperty $window_ID "_INITIAL_DIMENSION_Y") -
-	                          $(getWindowProperty $window_ID "_OFFSET_Y")            )), \
-	                      $(getWindowProperty $window_ID "_INITIAL_DIMENSION_WIDTH"),\
-	                      $(getWindowProperty $window_ID "_INITIAL_DIMENSION_HEIGHT")
+	x_position=$(( $(getWindowProperty $window_ID "_INITIAL_DIMENSION_X") -
+	               $(getWindowProperty $window_ID "_OFFSET_X")            ))
+	y_position=$(( $(getWindowProperty $window_ID "_INITIAL_DIMENSION_Y") -
+	               $(getWindowProperty $window_ID "_OFFSET_Y")            ))
+	initial_width=$(getWindowProperty $window_ID "_INITIAL_DIMENSION_WIDTH")
+	initial_height=$(getWindowProperty $window_ID "_INITIAL_DIMENSION_HEIGHT")
+
+	wmctrl -r :ACTIVE: -b remove,maximized_vert &&                                         \
+	wmctrl -r :ACTIVE: -b remove,maximized_horz &&                                         \
+	wmctrl -r :ACTIVE: -e 0,"$x_position","$y_position","$initial_width","$initial_height"
 
 	geom=(_MONITORS            _STATE                   _INITIAL_DIMENSION_X      \
 	      _INITIAL_DIMENSION_Y _INITIAL_DIMENSION_WIDTH _INITIAL_DIMENSION_HEIGHT \
