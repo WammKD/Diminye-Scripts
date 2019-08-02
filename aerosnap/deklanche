@@ -1,4 +1,44 @@
 #!/bin/bash
+#
+# Based on ideas in a script found at
+# http://icculus.org/pipermail/openbox/2013-January/007772.html
+#
+# Written  by damo <damo@bunsenlabs.org> October 2015
+# Modified by jaft <jaft.r@outlook.com>  2019
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published
+# by the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; see the file LICENSE.  If not, see
+# <https://www.gnu.org/licenses/>.
+#
+## Commentary:
+#
+# The script snaps a window to left or right halves of screen, or top and
+# bottom, using X window properties for getting and storing values.
+#
+# Left, right, top, or bottom screen margins can be specified (negative values allowed);
+# Works with dual monitors - windows will snap to edges of monitor they are on;
+# Honours user-defined Openbox left and right screen margins;
+# Works with decorated and undecorated windows, and windows with no borders;
+# Doesn't cover panels at top,bottom, desktop left or desktop right.
+#
+# REQUIRES: xdotool, wmctrl
+#
+########################################################################
+#
+# TODO: Account for _NET_WORKAREA with top/bottom snapping if panel only
+# appears on the other monitor.
+#
+########################################################################
 
 function getWindowProperty() {
 	window_ID="$1"
