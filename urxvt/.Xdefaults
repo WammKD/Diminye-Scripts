@@ -1,0 +1,8 @@
+urxvt*depth: 32
+urxvt*background: rgba:0000/0000/0200/c800
+urxvt*cursorUnderline: true
+urxvt*cursorBlink: true
+urxvt*foreground: #ffffff
+urxvt*keysym.Shift-Control-V: eval:paste_clipboard
+urxvt*keysym.Shift-Control-C: eval:selection_to_clipboard
+urxvt*iso14755: false
