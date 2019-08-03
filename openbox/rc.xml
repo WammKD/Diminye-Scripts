@@ -295,7 +295,7 @@
     <action name="Execute"><command>rofi -show run</command></action>
   </keybind>
   <keybind key="W-space">
-    <action name="Execute"><command>rofi -modi drun -show-icons -show drun</command></action>
+    <action name="Execute"><command>rofi -modi drun -show-icons -fullscreen -padding 85 -line-padding 14 -columns 2 -font "Cantarell bold 15" -display-drun ☰ -color-window argb:F4222222,#222222,argb:00222222 -color-normal argb:001d1f21,#FFFFFF,argb:001d1f21,argb:001d1f21,#9575cd -show drun</command></action>
   </keybind>
   <keybind key="W-t">
     <action name="Execute"><command>urxvt</command></action>
