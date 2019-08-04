@@ -25,9 +25,13 @@ urxvt*color14: #34e2e2
 ! white
 urxvt*color7: #d3d7cf
 urxvt*color15: #eeeeec
+
 urxvt*font: xft:Monospace:pixelsize=12
 urxvt*cursorUnderline: true
 urxvt*cursorBlink: true
+
+urxvt*scrollBar_right: true
+
 urxvt*keysym.Shift-Control-V: eval:paste_clipboard
 urxvt*keysym.Shift-Control-C: eval:selection_to_clipboard
 urxvt*iso14755: false
