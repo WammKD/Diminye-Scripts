@@ -26,9 +26,16 @@ urxvt*color14: #34e2e2
 urxvt*color7: #d3d7cf
 urxvt*color15: #eeeeec
 
-urxvt*font: xft:Monospace:pixelsize=12
+urxvt*font: xft:Monospace:pixelsize=14
+urxvt*letterSpace: -1
 urxvt*cursorUnderline: true
 urxvt*cursorBlink: true
+
+urxvt*saveLines: 100000
+urxvt*scrollstyle: plain
+urxvt*scrollTtyOutput: false
+urxvt*scrollWithBuffer: true
+urxvt*scrollTtyKeypress: true
 
 urxvt*scrollBar_right: true
 
