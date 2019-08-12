@@ -187,15 +187,16 @@ partitions() {
                                                | grep -v /snap/ \
                                                | while read -r partition
                                                  do
+                                                     path=$(echo $partition | cut -d \  -f 6)
                                                      icon=$(if
-                                                               [ $(echo $partition | cut -d \  -f 6) = "/home" ]
+                                                               [ "$path" = "/home" ]
                                                            then
                                                                echo $(/usr/bin/printf '\ue0b2')
                                                            else
                                                                echo $(/usr/bin/printf '\ue1d9')
                                                            fi)
 
-                                                     echo "%{F#5294e2} $icon %{F#FFFFFF}$(echo $partition | cut -d \  -f 3) %{F#5294e2}/ %{F#FFFFFF}$(echo $partition | cut -d \  -f 2 ) %{F#5294e2}"
+                                                     echo "%{F#5294e2} %{A:xdg-open $path &:}$icon %{F#FFFFFF}$(echo $partition | cut -d \  -f 3) %{F#5294e2}/ %{F#FFFFFF}$(echo $partition | cut -d \  -f 2 )%{A} %{F#5294e2}"
                                                  done)"%{-u}"
 
     printf "%s\n" "$result"
