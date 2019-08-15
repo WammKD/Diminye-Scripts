@@ -302,21 +302,13 @@
        Many programs reserve space automatically, but you can use this in
        other cases. -->
   <margins>
-    <top>
-      0
-    </top>
+    <top>0</top>
 
-    <bottom>
-      0
-    </bottom>
+    <bottom>0</bottom>
 
-    <left>
-      0
-    </left>
+    <left>0</left>
 
-    <right>
-      0
-    </right>
+    <right>0</right>
   </margins>
 
   <dock>
@@ -608,6 +600,14 @@
       <action name="Execute">
 	<command>
 	  emacs
+	</command>
+      </action>
+    </keybind>
+
+    <keybind key="W-f">
+      <action name="Execute">
+	<command>
+	  thunar
 	</command>
       </action>
     </keybind>
