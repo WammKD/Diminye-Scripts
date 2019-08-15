@@ -17,10 +17,10 @@
 #xfce-mcs-manager &
 
 mkdir /tmp/deklanche.d && echo "while true; do deklanche \$(cat < /tmp/deklanche.d/pipe); done" > /tmp/deklanche.d/deklanched && mkfifo /tmp/deklanche.d/pipe && bash /tmp/deklanche.d/deklanched &
-xset +fp /home/jaft/.local/share/fonts &
+xset +fp ~/.local/share/fonts &
 xset fp rehash &
 clipmenud &
 nitrogen --restore &
 tint2 &
-(sleep 3s && volumeicon) &
+#(sleep 3s && volumeicon) &
 (sleep 5s && compton -b) &
