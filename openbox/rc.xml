@@ -636,6 +636,14 @@
       </action>
     </keybind>
 
+    <keybind key="W-S-c">
+      <action name="Execute">
+	<command>
+	  bash -c "eval $(xdotool getmouselocation --shell); xdotool mousemove --screen $SCREEN $(($(xprop -root _NET_WORKAREA | awk '{print $5}' | cut -d , -f 1) / 2)) 0; xdotool mousedown 1; xdotool mouseup 1; sleep 0.16; xdotool mousemove --screen $SCREEN $X $Y"
+	</command>
+      </action>
+    </keybind>
+
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
 	<command>
