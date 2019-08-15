@@ -612,6 +612,30 @@
       </action>
     </keybind>
 
+    <keybind key="W-n">
+      <action name="Execute">
+	<command>
+	  urxvt -sr -bl -e nmtui
+	</command>
+      </action>
+    </keybind>
+
+    <keybind key="W-v">
+      <action name="Execute">
+	<command>
+	  urxvt -sr -bl -e alsamixer
+	</command>
+      </action>
+    </keybind>
+
+    <keybind key="W-S-w">
+      <action name="Execute">
+	<command>
+	  urxvt -sr -bl -g 159x45 -e lemon_weather_launcher.sh
+	</command>
+      </action>
+    </keybind>
+
     <keybind key="XF86AudioRaiseVolume">
       <action name="Execute">
 	<command>
