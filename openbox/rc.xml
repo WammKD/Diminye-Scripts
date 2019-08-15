@@ -567,7 +567,7 @@
     <keybind key="W-space">
       <action name="Execute">
 	<command>
-	  rofi -modi drun -show-icons -fullscreen -padding 85 -line-padding 14 -columns 2 -font "Cantarell bold 15" -display-drun ☰ -color-window argb:F4171717,#171717,argb:00171717 -color-normal argb:001d1f21,#FFFFFF,argb:001d1f21,argb:001d1f21,#9575cd -show drun
+	  rofi -modi drun -show-icons -fullscreen -padding 85 -line-padding 14 -columns 2 -font "Cantarell bold 15" -display-drun ☰ -color-window argb:F4171717,#171717,argb:00171717 -color-normal argb:001d1f21,#FFFFFF,argb:001d1f21,argb:001d1f21,#4285F4 -show drun
 	</command>
       </action>
     </keybind>
@@ -1288,6 +1288,12 @@
   </menu>
 
   <applications>
+    <application class="Firefox">
+      <decor>
+	no
+      </decor>
+    </application>
+
     <!-- # This is an example with comments through out. Use these to make
 	 # your own rules, but without the comments of course.
 	 # You may use one or more of the name/class/role/title/type rules
