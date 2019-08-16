@@ -26,7 +26,7 @@ urxvt*color14: #34e2e2
 urxvt*color7: #d3d7cf
 urxvt*color15: #eeeeec
 
-urxvt*font: xft:Monospace:pixelsize=14
+urxvt*font: xft:Monospace:pixelsize=14:minspace=False
 urxvt*letterSpace: -1
 urxvt*cursorUnderline: true
 urxvt*cursorBlink: true
@@ -38,6 +38,8 @@ urxvt*scrollWithBuffer: true
 urxvt*scrollTtyKeypress: true
 
 urxvt*scrollBar_right: true
+
+urxvt*pastableTabs: false
 
 urxvt*keysym.Shift-Control-V: eval:paste_clipboard
 urxvt*keysym.Shift-Control-C: eval:selection_to_clipboard
