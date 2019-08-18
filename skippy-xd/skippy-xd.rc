@@ -1,0 +1,6 @@
+[general]
+preferredIconSize = 64
+iconFillSpec = orig mid mid #171717
+
+[tooltip]
+show = true

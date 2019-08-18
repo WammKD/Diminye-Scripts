@@ -1,0 +1,8 @@
+[general]
+showAllDesktops = true
+preferredIconSize = 64
+switchDesktopOnActivate = true
+iconFillSpec = orig mid mid #171717
+
+[tooltip]
+show = true
