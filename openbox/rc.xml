@@ -501,11 +501,27 @@
     <!-- Take a screenshot of the current window with scrot when
 	 Alt+Print are pressed -->
     <keybind key="A-Print">
-      <action name="Execute"><command>scrot -s</command></action>
+      <action name="Execute">
+	<command>
+	  scrot -s
+	</command>
+      </action>
     </keybind>
 
     <keybind key="C-A-Down">
-      <action name="Execute"><command>skippy-xd</command></action>
+      <action name="Execute">
+	<command>
+	  skippy-xd
+	</command>
+      </action>
+    </keybind>
+
+    <keybind key="C-A-Up">
+      <action name="Execute">
+	<command>
+	  skippy-xd --config ~/.config/skippy-xd/skippy-xd_all-desktops.rc
+	</command>
+      </action>
     </keybind>
 
     <keybind key="W-Left">
