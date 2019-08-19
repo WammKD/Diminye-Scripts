@@ -26,6 +26,8 @@ urxvt*color14: #34e2e2
 urxvt*color7: #d3d7cf
 urxvt*color15: #eeeeec
 
+urxvt*iconFile: /usr/share/icons/Papirus-Dark/64x64/apps/utilities-terminal.svg
+
 urxvt*font: xft:Monospace:pixelsize=14:minspace=False
 urxvt*letterSpace: -1
 urxvt*cursorUnderline: true
