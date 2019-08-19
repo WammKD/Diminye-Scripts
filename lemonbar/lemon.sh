@@ -154,10 +154,19 @@ weather() {
 		   echo "ERROR"
 		   ;;
 	   esac)
+    text=$(result=$(echo $data | cut -d_ -f2)
+
+	   if
+	       [ ${#result} -gt 6 ]
+	   then
+	       echo ""
+	   else
+	       echo $result
+	   fi)
 
     #printf "%s\n" "weather%{U#7e57c2}%{+u}%{F#7e57c2}$icon %{F#FFFFFF}$(cut -d_ -f2 <<< $data) %{F#7e57c2}| %{F#FFFFFF}$(cut -d_ -f4 <<< $data) %{F#7e57c2}| %{F#FFFFFF}$(cut -d_ -f5 <<< $data)%{-u}"
     #printf "%s\n" "weather%{U#7e57c2}%{+u}%{F#7e57c2}$icon %{F#FFFFFF}$(cut -d_ -f2 <<< $data)  %{F#7e57c2}$(cut -d_ -f3 <<< $data) %{F#FFFFFF}$(cut -d_ -f4 <<< $data) %{F#7e57c2}| %{F#FFFFFF}$(cut -d_ -f5 <<< $data)%{-u}"
-    printf "%s\n" "weather%{A:urxvt -sr -bl -g 159x45 -e ~/weath.sh &:}%{U#f06292}%{+u}%{F#f06292} $icon %{F#FFFFFF}$(echo $data | cut -d_ -f2) %{-u}%{A}"
+    printf "%s\n" "weather%{A:urxvt -sr -bl -g 159x45 -e ~/weath.sh &:}%{U#f06292}%{+u}%{F#f06292} $icon %{F#FFFFFF}$text %{-u}%{A}"
 }
 
 inhibitor() {
