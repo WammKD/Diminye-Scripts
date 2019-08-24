@@ -607,7 +607,7 @@
     <keybind key="W-e">
       <action name="Execute">
 	<command>
-	  urxvt -e "emacs -nw"
+	  urxvt -e emacs -nw
 	</command>
       </action>
     </keybind>
