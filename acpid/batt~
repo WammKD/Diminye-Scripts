@@ -1,2 +1,0 @@
-event=(ac_adapter|battery).*
-action=/home/jaft/lemon_battery.sh
