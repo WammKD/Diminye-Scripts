@@ -18,5 +18,17 @@ bars=$(case $(echo $data | cut -d\: -f3) in
                echo $(/usr/bin/printf '\ue25d')
                ;;
        esac)
+final=$(echo $data | cut -d\: -f2)
+trunced=$(case ${#final} in
+              0)
+                  echo $final
+                  ;;
+              [1-9]|1[0-6])
+                  echo "$final "
+                  ;;
+              *)
+                  echo $(echo $final | awk '{ string=substr($0, 1, 16); print string; }')$(/usr/bin/printf '\ue25d')" "
+                  ;;
+          esac)
 
-echo "wifi%{A:urxvt -sr -bl -e nmtui &:}%{U#00bcd4}%{+u}%{F#00bcd4} $bars %{F#FFFFFF}$(echo $data | cut -d\: -f2) %{-u}%{A}" > "/tmp/panel_fifo"
+echo "wifi%{A:urxvt -sr -bl -e nmtui &:}%{U#00bcd4}%{+u}%{F#00bcd4} $bars %{F#FFFFFF}$trunced%{-u}%{A}" > "/tmp/panel_fifo"
