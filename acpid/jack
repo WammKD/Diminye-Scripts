@@ -1,0 +1,2 @@
+event=jack/headphone.*
+action=lemon_volume.sh

@@ -1,0 +1,2 @@
+event=jack/headphone.*
+action=/home/jaft/lemon_volume.sh

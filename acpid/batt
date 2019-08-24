@@ -1,0 +1,2 @@
+event=(ac_adapter|battery).*
+action=lemon_battery.sh
