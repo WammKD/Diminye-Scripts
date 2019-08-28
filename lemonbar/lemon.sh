@@ -116,7 +116,7 @@ weather() {
 
     #printf "%s\n" "weather%{U#7e57c2}%{+u}%{F#7e57c2}$icon %{F#FFFFFF}$(cut -d_ -f2 <<< $data) %{F#7e57c2}| %{F#FFFFFF}$(cut -d_ -f4 <<< $data) %{F#7e57c2}| %{F#FFFFFF}$(cut -d_ -f5 <<< $data)%{-u}"
     #printf "%s\n" "weather%{U#7e57c2}%{+u}%{F#7e57c2}$icon %{F#FFFFFF}$(cut -d_ -f2 <<< $data)  %{F#7e57c2}$(cut -d_ -f3 <<< $data) %{F#FFFFFF}$(cut -d_ -f4 <<< $data) %{F#7e57c2}| %{F#FFFFFF}$(cut -d_ -f5 <<< $data)%{-u}"
-    printf "%s\n" "weather%{A:urxvt -sr -bl -g 159x45 -e ~/weath.sh &:}%{U#f06292}%{+u}%{F#f06292} $icon %{F#FFFFFF}$text %{-u}%{A}"
+    printf "%s\n" "weather%{A:urxvt -sr -bl -g 159x45 -e lemon_weather_launcher.sh &:}%{U#f06292}%{+u}%{F#f06292} $icon %{F#FFFFFF}$text %{-u}%{A}"
 }
 
 inhibitor() {
@@ -141,21 +141,25 @@ performance() {
 }
 
 partitions() {
-    result="partitions%{U#5294e2}%{+u}"$(df -h | grep ^/dev/ \
+    result="partitions%{U#5294e2}%{+u}"$(df -h | grep ^/dev/    \
                                                | grep -v /boot/ \
                                                | grep -v /snap/ \
                                                | while read -r partition
                                                  do
-                                                     path=$(echo $partition | cut -d \  -f 6)
+                                                     path=$(echo ${partition##*%} | awk '{ string=substr($0, 1); print string; }')
                                                      icon=$(if
                                                                [ "$path" = "/home" ]
                                                            then
                                                                echo $(/usr/bin/printf '\ue0b2')
+                                                           elif
+                                                               [ "$(echo $partition | awk '{ string=substr($0, 1, 8); print string; }')" != "/dev/sda" ]
+                                                           then
+                                                               echo $(/usr/bin/printf '\ue147')
                                                            else
-                                                               echo $(/usr/bin/printf '\ue1d9')
+                                                               echo $(/usr/bin/printf '\ue1e1')
                                                            fi)
 
-                                                     echo "%{F#5294e2} %{A:xdg-open $path &:}$icon %{F#FFFFFF}$(echo $partition | cut -d \  -f 3) %{F#5294e2}/ %{F#FFFFFF}$(echo $partition | cut -d \  -f 2 )%{A} %{F#5294e2}"
+                                                     echo -n "%{F#5294e2} %{A:thunar \"$path\" &:}$icon %{F#FFFFFF}$(echo $partition | cut -d \  -f 3) %{F#5294e2}/ %{F#FFFFFF}$(echo $partition | cut -d \  -f 2 )%{A} %{F#5294e2}"
                                                  done)"%{-u}"
 
     printf "%s\n" "$result"
@@ -170,7 +174,7 @@ while :; do     weather; sleep 15m; done > "$fifo" &
 while :; do      volume; sleep 30s; done > "$fifo" &
 while :; do  brightness; sleep 30s; done > "$fifo" &
 while :; do   inhibitor; sleep 30s; done > "$fifo" &
-while :; do performance; sleep  4s; done > "$fifo" &
+while :; do performance; sleep  1s; done > "$fifo" &
 while :; do  partitions; sleep  1m; done > "$fifo" &
 
 
@@ -213,7 +217,7 @@ do
     printf "%s\n" "%{l}  ${partitions}   ${performance}%{c}${clock}%{r}${weather}   ${inhibitor}   ${volume}   ${brightness}   ${wifi}   ${battery}  "
 done < "$fifo" | lemonbar -p                                                                     \
                           -g $(xprop -root _NET_WORKAREA | awk '{gsub(/,/,"");print $5}')x19+0+0 \
-                          -B '#D7000000'                                                         \
+                          -B '#FF000000'                                                         \
                           -f 'fixed'                                                             \
                           -f '-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1'        \
                | bash; exit
