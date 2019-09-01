@@ -588,6 +588,14 @@
       </action>
     </keybind>
 
+    <keybind key="W-s">
+      <action name="Execute">
+        <command>
+	  wmctrl -r :ACTIVE: -b toggle,shaded
+	</command>
+      </action>
+    </keybind>
+
     <keybind key="W-t">
       <action name="Execute">
 	<command>
