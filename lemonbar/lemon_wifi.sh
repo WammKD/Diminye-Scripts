@@ -2,16 +2,16 @@
 
 data=$(nmcli -t -f active,ssid,bars dev wifi | grep yes)
 bars=$(case $(echo $data | cut -d\: -f3) in
-           "▂___")
+           "*")  # ▂___
                echo $(/usr/bin/printf '\ue25e')
                ;;
-           "▂▄__")
+           "**")  # ▂▄__
                echo $(/usr/bin/printf '\ue25f')
                ;;
-           "▂▄▆_")
+           "***")  # ▂▄▆_
                echo $(/usr/bin/printf '\ue260')
                ;;
-           "▂▄▆█")
+           "****")  # ▂▄▆█
                echo $(/usr/bin/printf '\ue261')
                ;;
            *)
