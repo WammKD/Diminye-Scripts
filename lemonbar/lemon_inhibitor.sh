@@ -35,4 +35,4 @@ icon=$(case $(xset -q | grep 'timeout:' | awk '{ print $2 }')$(xset -q | grep 'D
        esac)
 
 #printf "%s\n" "inhibitor%{U#f06292}%{+u}%{F#f06292}$icon %{F#FFFFFF}$(cut -d_ -f2 <<< $data)%{-u}"
-echo "inhibitor%{A:if [ $(xset -q | grep 'DPMS is' | awk '{ print $3 }') = 'Enabled' ]; then xset -dpms; else xset +dpms; fi; ~/lemon_inhibitor.sh:}%{U#7e57c2}%{+u}%{F#7e57c2} $icon %{-u}%{A}" > "/tmp/panel_fifo"
+echo "inhibitor%{A:if [ $(xset -q | grep 'DPMS is' | awk '{ print $3 }') = 'Enabled' ]; then xset -dpms; else xset +dpms; fi; ~/lemon_inhibitor.sh:}%{U#7e57c2}%{+u}%{F#7e57c2} $icon %{-u}%{A}" > "$HOME/.panel_fifo"

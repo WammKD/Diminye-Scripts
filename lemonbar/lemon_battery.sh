@@ -50,4 +50,4 @@ stuff=$(acpi -b | while read -r batt
                       echo "$result %{F#FFFFFF}$percent"
                   done)
 
-echo "battery%{+u}$stuff %{-u}" > "/tmp/panel_fifo"
+echo "battery%{+u}$stuff %{-u}" > "$HOME/.panel_fifo"

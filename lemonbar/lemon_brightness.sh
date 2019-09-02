@@ -51,4 +51,4 @@ icon=$(case $new_current in
        esac)
 percent=$(echo "scale = 2; (($new_current / $max) * 100)" | bc)
 
-echo "brightness%{U#ca71df}%{+u}%{F#ca71df} $icon %{F#FFFFFF}$(if [ ${#percent} -eq 6 ]; then echo 100; else echo $(echo $percent | cut -d . -f 1)%; fi) %{-u}" > "/tmp/panel_fifo"
+echo "brightness%{U#ca71df}%{+u}%{F#ca71df} $icon %{F#FFFFFF}$(if [ ${#percent} -eq 6 ]; then echo 100; else echo $(echo $percent | cut -d . -f 1)%; fi) %{-u}" > "$HOME/.panel_fifo"
