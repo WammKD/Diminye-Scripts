@@ -22,5 +22,6 @@ xset fp rehash &
 CM_SELECTIONS=clipboard clipmenud &
 nitrogen --restore &
 tint2 &
+(sleep 1s && lemon.sh) &
 #(sleep 3s && volumeicon) &
 (sleep 5s && compton -b) &
