@@ -31,4 +31,4 @@ trunced=$(case ${#final} in
                   ;;
           esac)
 
-echo "wifi%{A:urxvt -sr -bl -e nmtui &:}%{U#00bcd4}%{+u}%{F#00bcd4} $bars %{F#FFFFFF}$trunced%{-u}%{A}" > "$HOME/.panel_fifo"
+echo "wifi%{A:urxvt -sr -bl -e nmtui &:}%{U#00bcd4}%{+u}%{F#00bcd4} $bars %{F#FFFFFF}$trunced%{-u}%{A}" > "/tmp/lemon/panel_fifo"

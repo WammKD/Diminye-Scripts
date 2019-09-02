@@ -16,8 +16,10 @@ fi
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
 # Remove old panel fifo; create new one
-fifo="$HOME/.panel_fifo"
+fifo_dir="/tmp/lemon"
+fifo="$fifo_dir/panel_fifo"
 [ -e "$fifo" ] && rm "$fifo"
+mkdir -p "$fifo_dir"
 mkfifo "$fifo"
 
 
