@@ -498,12 +498,20 @@
       </action>
     </keybind>
 
-    <!-- Take a screenshot of the current window with scrot when
-	 Alt+Print are pressed -->
+    <!-- Take a screenshot of the current window when Alt+Print are pressed -->
     <keybind key="A-Print">
       <action name="Execute">
 	<command>
-	  scrot -s
+	  gnome-screenshot -w
+	</command>
+      </action>
+    </keybind>
+
+    <!-- Take a screenshot to the clipboard when Alt+Print are pressed -->
+    <keybind key="C-Print">
+      <action name="Execute">
+	<command>
+	  gnome-screenshot -c
 	</command>
       </action>
     </keybind>
@@ -780,7 +788,7 @@
     <keybind key="Print">
       <action name="Execute">
 	<command>
-	  scrot
+	  gnome-screenshot -i
 	</command>
       </action>
     </keybind>
