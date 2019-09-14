@@ -23,5 +23,6 @@ CM_SELECTIONS=clipboard clipmenud &
 nitrogen --restore &
 tint2 &
 (sleep 1s && lemon.sh) &
-#(sleep 3s && volumeicon) &
+(sleep 2s && dunst) &
+(sleep 3s && xfce4-power-manager) &
 (sleep 5s && compton -b) &
