@@ -11,7 +11,7 @@ then
 elif
     [ "$1" = tog ]
 then
-    amixer -M -c1 sset Master toggle
+    pulsemixer --toggle-mute
 fi
 
 
@@ -59,4 +59,4 @@ else
     level=$(echo $level | awk '{ string=substr($0, 1, 3); print string; }')
 fi
 
-echo "volume%{A:urxvt -sr -bl -e alsamixer &:}%{U#eb6637}%{+u}%{F#eb6637} $icon %{F#FFFFFF}$level %{-u}%{A}" > "/tmp/lemon/panel_fifo"
+echo "volume%{A:urxvt -sr -bl -e pulsemixer &:}%{U#eb6637}%{+u}%{F#eb6637} $icon %{F#FFFFFF}$level %{-u}%{A}" > "/tmp/lemon/panel_fifo"
