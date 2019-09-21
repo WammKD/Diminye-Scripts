@@ -676,6 +676,14 @@
       </action>
     </keybind>
 
+    <keybind key="W-c">
+      <action name="Execute">
+	<command>
+	  gnome-calculator
+	</command>
+      </action>
+    </keybind>
+
     <keybind key="W-n">
       <action name="Execute">
 	<command>
