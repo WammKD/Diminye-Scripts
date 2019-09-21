@@ -34,7 +34,7 @@ clock() {  # sudo dpkg-reconfigure tzdata   to change timezone
 }
 
 battery() {
-    lemon_battery.sh
+    lemon_battery.sh $1
 }
 
 wifi() {
@@ -146,15 +146,15 @@ partitions() {
 
 
 # Run each element in a subshell and output to fifo
-while :; do       clock; sleep  1s; done > "$fifo" &
-while :; do     battery; sleep 20s; done > "$fifo" &
-while :; do        wifi; sleep 20s; done > "$fifo" &
-while :; do     weather; sleep 15m; done > "$fifo" &
-while :; do      volume; sleep 30s; done > "$fifo" &
-while :; do  brightness; sleep 30s; done > "$fifo" &
-while :; do   inhibitor; sleep 30s; done > "$fifo" &
-while :; do performance; sleep  1s; done > "$fifo" &
-while :; do  partitions; sleep  1m; done > "$fifo" &
+while :; do       clock   ; sleep     1s; done > "$fifo" &
+while :; do     battery 59; sleep 1m 40s; done > "$fifo" &
+while :; do        wifi   ; sleep    20s; done > "$fifo" &
+while :; do     weather   ; sleep    15m; done > "$fifo" &
+while :; do      volume   ; sleep    30s; done > "$fifo" &
+while :; do  brightness   ; sleep    15m; done > "$fifo" &
+while :; do   inhibitor   ; sleep    30s; done > "$fifo" &
+while :; do performance   ; sleep     1s; done > "$fifo" &
+while :; do  partitions   ; sleep     1m; done > "$fifo" &
 
 
 ###################
