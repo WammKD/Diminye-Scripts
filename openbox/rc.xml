@@ -676,6 +676,14 @@
       </action>
     </keybind>
 
+    <keybind key="W-w">
+      <action name="Execute">
+        <command>
+	  x-www-browser
+	</command>
+      </action>
+    </keybind>
+
     <keybind key="W-c">
       <action name="Execute">
 	<command>
