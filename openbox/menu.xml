@@ -16,7 +16,7 @@
     <item label="Web browser">
       <action name="Execute">
 	<execute>
-	  qview
+	  x-www-browser
 	</execute>
       </action>
     </item>
