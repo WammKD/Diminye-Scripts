@@ -615,7 +615,7 @@
     <keybind key="A-F2">
       <action name="Execute">
 	<command>
-	  rofi -show run
+	  rofi -show run -color-window argb:E8000000,#868686,#868686 -color-normal argb:00000000,#FFFFFF,argb:00000000,argb:4CFFFFFF,#FFFFFF
 	</command>
       </action>
     </keybind>
