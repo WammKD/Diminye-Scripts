@@ -1,0 +1,7 @@
+#!/bin/dash
+
+IMAGE="/tmp/tempscreen.png"
+
+gnome-screenshot -f $IMAGE
+convert $IMAGE -blur 7x4 $IMAGE
+i3lock -i $IMAGE
