@@ -6,3 +6,7 @@ iconFillSpec = orig mid mid #171717
 
 [tooltip]
 show = true
+border = #000000
+background = #000000
+opacity = 204
+text = #FFFFFF
