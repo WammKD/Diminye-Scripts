@@ -599,7 +599,7 @@
     <keybind key="W-p">
       <action name="Execute">
 	<command>
-	  bash -c "CM_LAUNCHER=rofi clipmenu"
+	  bash -c "CM_LAUNCHER=rofi clipmenu -font \"Cantarell normal 13\" -color-window argb:FFFFFFFF,#929291,#4A4F51 -color-normal argb:00E8E8E7,#000000,argb:00E8E8E7,#4A90D9,#FFFFFF"
 	</command>
       </action>
     </keybind>
