@@ -102,7 +102,9 @@ storeGeometry() {
 	# WM sets window frame and border sizes
 	# Titlebar height depends on fontsize of Active titlebar
 	win_EXTENTS=$(xprop -id $window_ID _NET_FRAME_EXTENTS | awk ' {gsub(/,/,"");print $3,$4,$5,$6}')
-	read BORDER_L BORDER_R BORDER_T BORDER_B <<< "$win_EXTENTS"
+	read BORDER_L BORDER_R BORDER_T BORDER_B <<E
+$win_EXTENTS
+E
 
 	setPropertyInteger $window_ID "_OB_BORDER_L" "$BORDER_L"
 	setPropertyInteger $window_ID "_OB_BORDER_R" "$BORDER_R"
@@ -130,10 +132,22 @@ storeGeometry() {
 		TAG="margins"
 		RCXML=$(sed -n "/<$TAG>/,/<\/$TAG>/p" "$RC")
 
-		setPropertyInteger $window_ID "_OB_MARGIN_L" $(grep -oPm1 "(?<=<left>)[^<]+"   <<< "$RCXML")
-		setPropertyInteger $window_ID "_OB_MARGIN_R" $(grep -oPm1 "(?<=<right>)[^<]+"  <<< "$RCXML")
-		setPropertyInteger $window_ID "_OB_MARGIN_T" $(grep -oPm1 "(?<=<top>)[^<]+"    <<< "$RCXML")
-		setPropertyInteger $window_ID "_OB_MARGIN_B" $(grep -oPm1 "(?<=<bottom>)[^<]+" <<< "$RCXML")
+		setPropertyInteger $window_ID "_OB_MARGIN_L" $(grep -oPm1 "(?<=<left>)[^<]+"   <<E
+$RCXML
+E
+)
+		setPropertyInteger $window_ID "_OB_MARGIN_R" $(grep -oPm1 "(?<=<right>)[^<]+"  <<E
+$RCXML
+E
+)
+		setPropertyInteger $window_ID "_OB_MARGIN_T" $(grep -oPm1 "(?<=<top>)[^<]+"    <<E
+$RCXML
+E
+)
+		setPropertyInteger $window_ID "_OB_MARGIN_B" $(grep -oPm1 "(?<=<bottom>)[^<]+" <<E
+$RCXML
+E
+)
 	else
 		echo "$RC not found" >&2
 
@@ -182,7 +196,9 @@ getScreenDimensions() {   # get net workarea, if panels are present
 
 
 	#    X pos, Y pos, usable width, usable height
-	read valX   valY   valW          valH          <<< $(echo $(xprop -root _NET_WORKAREA) | awk '{gsub(/,/,"");print $3,$4,$5,$6}')
+	read valX   valY   valW          valH          <<E
+$(echo $(xprop -root _NET_WORKAREA) | awk '{gsub(/,/,"");print $3,$4,$5,$6}')
+E
 
 	desktopW=$(xrandr -q | awk '/Screen/ {print $8}')  # total desktop width
 
@@ -190,8 +206,10 @@ getScreenDimensions() {   # get net workarea, if panels are present
 	read monA     \
 	     monAgeom \
 	     monB     \
-	     monBgeom <<< $(echo $(xrandr -q                                                             |
-	                           awk '/ connected/ {if ($3=="primary") print $1,$4; else print $1,$3}'))
+	     monBgeom <<E
+$(echo $(xrandr -q                                                             |
+         awk '/ connected/ {if ($3=="primary") print $1,$4; else print $1,$3}'))
+E
 
 	monApos=$(echo $monAgeom | awk -F "+" '{print $2}') # get offset_x
 	monBpos=$(echo $monBgeom | awk -F "+" '{print $2}')
