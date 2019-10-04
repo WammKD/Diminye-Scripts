@@ -312,7 +312,7 @@ WINDOW_STATE=$(getWindowProperty $WINDOW "_STATE")
 
 case "$1" in
 	-l|--left)
-		case $(getWindowProperty $WINDOW "_STATE") in
+		case $WINDOW_STATE in
 			"such" | "found.")
 				storeGeometry $WINDOW
 
@@ -336,13 +336,15 @@ case "$1" in
 			"\"JUST_RIGHT\"")
 			  restoreDimensionGeometry $WINDOW
 				;;
-			"\"TOP_RIGHT\"")
-				setPropertyString $WINDOW "_STATE" JUST_TOP
-				;;&
-			"\"BOT_RIGHT\"")
-				setPropertyString $WINDOW "_STATE" JUST_BOTTOM
-				;;&
 			"\"TOP_RIGHT\"" | "\"BOT_RIGHT\"")
+				if
+					[ "$WINDOW_STATE" = "\"TOP_RIGHT\"" ]
+				then
+					setPropertyString $WINDOW "_STATE" JUST_TOP
+				else
+					setPropertyString $WINDOW "_STATE" JUST_BOTTOM
+				fi
+
 				wmctrl -r :ACTIVE: -b add,maximized_horz
 				;;
 			"\"JUST_TOP\"" | "\"JUST_BOTTOM\"")
@@ -358,12 +360,14 @@ case "$1" in
 				# Move window
 				wmctrl -r :ACTIVE: -b remove,maximized_horz                && \
 				wmctrl -r :ACTIVE: -e 0,"$x_position",-1,"$WIN_WIDTH_L",-1
-				;;&
-			"\"JUST_TOP\"")
-				setPropertyString $WINDOW "_STATE" TOP_LEFT
-				;;&
-			"\"JUST_BOTTOM\"")
-				setPropertyString $WINDOW "_STATE" BOT_LEFT
+
+				if
+					[ "$WINDOW_STATE" = "\"JUST_TOP\"" ]
+				then
+					setPropertyString $WINDOW "_STATE" TOP_LEFT
+				else
+					setPropertyString $WINDOW "_STATE" BOT_LEFT
+				fi
 				;;
 			"\"MAXIMIZED\"")
 				# Provides $X_zero and $screenW
@@ -389,7 +393,7 @@ case "$1" in
 		esac
 		;;
 	-r|--right)
-		case $(getWindowProperty $WINDOW "_STATE") in
+		case $WINDOW_STATE in
 			"such" | "found.")
 				storeGeometry $WINDOW
 
@@ -410,13 +414,15 @@ case "$1" in
 			"\"JUST_LEFT\"")
 				restoreDimensionGeometry $WINDOW
 				;;
-			"\"TOP_LEFT\"")
-				setPropertyString $WINDOW "_STATE" JUST_TOP
-				;;&
-			"\"BOT_LEFT\"")
-				setPropertyString $WINDOW "_STATE" JUST_BOTTOM
-				;;&
 			"\"TOP_LEFT\"" | "\"BOT_LEFT\"")
+				if
+					[ "$WINDOW_STATE" = "\"TOP_LEFT\"" ]
+				then
+					setPropertyString $WINDOW "_STATE" JUST_TOP
+				else
+					setPropertyString $WINDOW "_STATE" JUST_BOTTOM
+				fi
+
 				wmctrl -r :ACTIVE: -b add,maximized_horz
 				;;
 			"\"JUST_TOP\"" | "\"JUST_BOTTOM\"")
@@ -429,12 +435,14 @@ case "$1" in
 				# Move window
 				wmctrl -r :ACTIVE: -b remove,maximized_horz                 && \
 				wmctrl -r :ACTIVE: -e 0,"$x_position",-1,"$window_width",-1
-				;;&
-			"\"JUST_TOP\"")
-				setPropertyString $WINDOW "_STATE" TOP_RIGHT
-				;;&
-			"\"JUST_BOTTOM\"")
-				setPropertyString $WINDOW "_STATE" BOT_RIGHT
+
+				if
+					[ "$WINDOW_STATE" = "\"JUST_TOP\"" ]
+				then
+					setPropertyString $WINDOW "_STATE" TOP_RIGHT
+				else
+					setPropertyString $WINDOW "_STATE" BOT_RIGHT
+				fi
 				;;
 			"\"MAXIMIZED\"")
 				# Provides $X_zero and $screenW
@@ -457,7 +465,7 @@ case "$1" in
 		esac
 		;;
 	-u|--up)
-		case $(getWindowProperty $WINDOW "_STATE") in
+		case $WINDOW_STATE in
 			"such" | "found.")
 				storeGeometry $WINDOW
 
@@ -493,20 +501,24 @@ case "$1" in
 				# Move window
 				wmctrl -r :ACTIVE: -b remove,maximized_vert                      && \
 				wmctrl -r :ACTIVE: -e 0,-1,"$y_position",-1,"$window_height_top"
-				;;&
-			"\"JUST_LEFT\"")
-				setPropertyString $WINDOW "_STATE" TOP_LEFT
-				;;&
-			"\"JUST_RIGHT\"")
-				setPropertyString $WINDOW "_STATE" TOP_RIGHT
+
+				if
+					[ "$WINDOW_STATE" = "\"JUST_LEFT\"" ]
+				then
+					setPropertyString $WINDOW "_STATE" TOP_LEFT
+				else
+					setPropertyString $WINDOW "_STATE" TOP_RIGHT
+				fi
 				;;
-			"\"BOT_LEFT\"")
-				setPropertyString $WINDOW "_STATE" JUST_LEFT
-				;;&
-			"\"BOT_RIGHT\"")
-				setPropertyString $WINDOW "_STATE" JUST_RIGHT
-				;;&
 			"\"BOT_LEFT\"" | "\"BOT_RIGHT\"")
+				if
+					[ "$WINDOW_STATE" = "\"BOT_LEFT\"" ]
+				then
+					setPropertyString $WINDOW "_STATE" JUST_LEFT
+				else
+					setPropertyString $WINDOW "_STATE" JUST_RIGHT
+				fi
+
 				wmctrl -r :ACTIVE: -b add,maximized_vert
 				;;
 			"\"JUST_TOP\"")
@@ -543,7 +555,7 @@ case "$1" in
 		esac
 		;;
 	-d|--down)
-		case $(getWindowProperty $WINDOW "_STATE") in
+		case $WINDOW_STATE in
 			"such" | "found.")
 				storeGeometry $WINDOW
 
@@ -579,20 +591,24 @@ case "$1" in
 				# Move window
 				wmctrl -r :ACTIVE: -b remove,maximized_vert                         && \
 				wmctrl -r :ACTIVE: -e 0,-1,"$y_position",-1,"$window_height_bottom"
-				;;&
-			"\"JUST_LEFT\"")
-				setPropertyString $WINDOW "_STATE" BOT_LEFT
-				;;&
-			"\"JUST_RIGHT\"")
-				setPropertyString $WINDOW "_STATE" BOT_RIGHT
+
+				if
+					[ "$WINDOW_STATE" = "\"JUST_LEFT\"" ]
+				then
+					setPropertyString $WINDOW "_STATE" BOT_LEFT
+				else
+					setPropertyString $WINDOW "_STATE" BOT_RIGHT
+				fi
 				;;
-			"\"TOP_LEFT\"")
-				setPropertyString $WINDOW "_STATE" JUST_LEFT
-				;;&
-			"\"TOP_RIGHT\"")
-				setPropertyString $WINDOW "_STATE" JUST_RIGHT
-				;;&
 			"\"TOP_LEFT\"" | "\"TOP_RIGHT\"")
+				if
+					[ "$WINDOW_STATE" = "\"TOP_LEFT\"" ]
+				then
+					setPropertyString $WINDOW "_STATE" JUST_LEFT
+				else
+					setPropertyString $WINDOW "_STATE" JUST_RIGHT
+				fi
+
 				wmctrl -r :ACTIVE: -b add,maximized_vert
 				;;
 			"\"JUST_TOP\"")
