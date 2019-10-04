@@ -227,10 +227,10 @@ getXpositionForLeftSnap() {
 	OB_border_left=$(getWindowProperty $window_ID "_OB_BORDER_L")
 
 	if
-		(( $margin_passed_in != 0 ))
+		[ $margin_passed_in -ne 0 ]
 	then
 		if
-			(( $margin_passed_in <= $OB_border_left ))
+			[ $margin_passed_in -lt $OB_border_left ]
 		then
 			echo $((                     $OB_border_left + $x_coord_of_monitor ))
 		else
@@ -251,10 +251,10 @@ getWindowWidthForRightSnap() {
 	OB_border_right=$(getWindowProperty $window_ID "_OB_BORDER_R")
 
 	if
-		(( $margin_passed_in_by_user != 0 ))
+		[ $margin_passed_in_by_user -ne 0 ]
 	then
 		if
-			(( $margin_passed_in_by_user <= $OB_border_right ))
+			[ $margin_passed_in_by_user -le $OB_border_right ]
 		then
 			margin_right="$OB_border_right"     # don't need OB margin
 		else
