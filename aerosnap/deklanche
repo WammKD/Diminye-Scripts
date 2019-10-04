@@ -125,7 +125,7 @@ storeGeometry() {
 	RC="$HOME/.config/openbox/rc.xml"
 
 	if
-		[[ -f "$RC" ]]
+		[ -f "$RC" ]
 	then
 		TAG="margins"
 		RCXML=$(sed -n "/<$TAG>/,/<\/$TAG>/p" "$RC")
@@ -189,10 +189,10 @@ getScreenDimensions() {   # get net workarea, if panels are present
 	monApos=$(echo $monAgeom | awk -F "+" '{print $2}') # get offset_x
 	monBpos=$(echo $monBgeom | awk -F "+" '{print $2}')
 	if
-		[[ $number_of_monitors != 1 ]]        # test if there are 2 monitors
+		[ $number_of_monitors != 1 ]        # test if there are 2 monitors
 	then
 		if
-			[[ $monApos -lt $monBpos ]]
+			[ $monApos -lt $monBpos ]
 		then
 			screenW1=${monAgeom%'x'*}   # width of left screen
 			screenW2=${monBgeom%'x'*}   # width of right screen
@@ -207,7 +207,7 @@ getScreenDimensions() {   # get net workarea, if panels are present
 	WINPOS=$(xwininfo -id $WINDOW | grep "Absolute upper-left X")
 
 	if
-		[[ ${WINPOS##*' '} -ge $screenW1 ]]
+		[ ${WINPOS##*' '} -ge $screenW1 ]
 	then # window is on R monitor
 		X_zero=$(( $desktopW - $screenW2 ))
 		screenW=$(( $desktopW - $screenW1 - $(( $desktopW - $valW - $valX )) ))
@@ -273,7 +273,7 @@ getWindowWidthForRightSnap() {
 
 
 if
-	[[ $2 ]]
+	[ $2 ]
 then
 	MARGIN=$2
 else
