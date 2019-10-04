@@ -157,15 +157,22 @@ restoreDimensionGeometry() {
 	wmctrl -r :ACTIVE: -b remove,maximized_horz &&                                         \
 	wmctrl -r :ACTIVE: -e 0,"$x_position","$y_position","$initial_width","$initial_height"
 
-	geom=(_MONITORS            _STATE                   _INITIAL_DIMENSION_X      \
-	      _INITIAL_DIMENSION_Y _INITIAL_DIMENSION_WIDTH _INITIAL_DIMENSION_HEIGHT \
-	      _OFFSET_X            _OFFSET_Y                _OB_BORDER_L              \
-	      _OB_BORDER_R         _OB_BORDER_T             _OB_BORDER_B              \
-	      _OB_MARGIN_L         _OB_MARGIN_R             _OB_MARGIN_T              _OB_MARGIN_B)
-
-	for g in ${geom[@]}; do
-		xprop -id $window_ID -remove $g
-	done
+	xprop -id $window_ID -remove _MONITORS
+	xprop -id $window_ID -remove _STATE
+	xprop -id $window_ID -remove _INITIAL_DIMENSION_X
+	xprop -id $window_ID -remove _INITIAL_DIMENSION_Y
+	xprop -id $window_ID -remove _INITIAL_DIMENSION_WIDTH
+	xprop -id $window_ID -remove _INITIAL_DIMENSION_HEIGHT
+	xprop -id $window_ID -remove _OFFSET_X
+	xprop -id $window_ID -remove _OFFSET_Y
+	xprop -id $window_ID -remove _OB_BORDER_L
+	xprop -id $window_ID -remove _OB_BORDER_R
+	xprop -id $window_ID -remove _OB_BORDER_T
+	xprop -id $window_ID -remove _OB_BORDER_B
+	xprop -id $window_ID -remove _OB_MARGIN_L
+	xprop -id $window_ID -remove _OB_MARGIN_R
+	xprop -id $window_ID -remove _OB_MARGIN_T
+	xprop -id $window_ID -remove _OB_MARGIN_B
 }
 
 getScreenDimensions() {   # get net workarea, if panels are present
