@@ -40,14 +40,14 @@
 #
 ########################################################################
 
-function getWindowProperty() {
+getWindowProperty() {
 	window_ID="$1"
 	property_name="$2"
 
 	echo $(xprop -id $window_ID $property_name | awk '{print $3}')
 }
 
-function setPropertyInteger() {
+setPropertyInteger() {
 	window_ID="$1"
 	property_name="$2"
 	property_value="$3"
@@ -56,7 +56,7 @@ function setPropertyInteger() {
 	      -f   "$property_name" 32i               \
 	      -set "$property_name" "$property_value"
 }
-function setPropertyString() {
+setPropertyString() {
 	window_ID="$1"
 	property_name="$2"
 	property_value="$3"
@@ -66,7 +66,7 @@ function setPropertyString() {
 	      -set "$property_name" "$property_value"
 }
 
-function storeGeometry() {
+storeGeometry() {
 	window_ID="$1"
 
 
@@ -141,7 +141,7 @@ function storeGeometry() {
 	fi
 }
 
-function restoreDimensionGeometry() {
+restoreDimensionGeometry() {
 	window_ID="$1"
 
 
@@ -168,7 +168,7 @@ function restoreDimensionGeometry() {
 	done
 }
 
-function getScreenDimensions() {   # get net workarea, if panels are present
+getScreenDimensions() {   # get net workarea, if panels are present
 	window_ID="$1"
 	number_of_monitors="$2"
 
@@ -217,7 +217,7 @@ function getScreenDimensions() {   # get net workarea, if panels are present
 	fi
 }
 
-function getXpositionForLeftSnap() {
+getXpositionForLeftSnap() {
 	window_ID="$1"
 	margin_passed_in="$2"
 	x_coord_of_monitor="$3"
@@ -241,7 +241,7 @@ function getXpositionForLeftSnap() {
 	fi
 }
 
-function getWindowWidthForRightSnap() {
+getWindowWidthForRightSnap() {
 	window_ID="$1"
 	margin_passed_in_by_user="$2"
 	monitor_width="$3"
