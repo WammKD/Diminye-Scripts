@@ -255,7 +255,7 @@ getXpositionForLeftSnap() {
 		[ $margin_passed_in -ne 0 ]
 	then
 		if
-			[ $margin_passed_in -lt $OB_border_left ]
+			[ $margin_passed_in -le $OB_border_left ]
 		then
 			echo $((                     $OB_border_left + $x_coord_of_monitor ))
 		else
