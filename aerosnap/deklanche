@@ -306,6 +306,7 @@ else
 fi
 
 WINDOW=$(xdotool getactivewindow)
+WINDOW_STATE=$(getWindowProperty $WINDOW "_STATE")
 
 
 
