@@ -567,7 +567,7 @@
     <keybind key="W-Left">
       <action name="Execute">
 	<command>
-	  bash -c "echo --left &gt; /tmp/deklanche.d/pipe"
+	  dash -c "echo --left &gt; /tmp/deklanche.d/pipe"
 	</command>
       </action>
     </keybind>
@@ -575,7 +575,7 @@
     <keybind key="W-Right">
       <action name="Execute">
 	<command>
-	  bash -c "echo --right &gt; /tmp/deklanche.d/pipe"
+	  dash -c "echo --right &gt; /tmp/deklanche.d/pipe"
 	</command>
       </action>
     </keybind>
@@ -583,7 +583,7 @@
     <keybind key="W-Down">
       <action name="Execute">
 	<command>
-	  bash -c "echo --down &gt; /tmp/deklanche.d/pipe"
+	  dash -c "echo --down &gt; /tmp/deklanche.d/pipe"
 	</command>
       </action>
     </keybind>
@@ -591,7 +591,7 @@
     <keybind key="W-Up">
       <action name="Execute">
 	<command>
-	  bash -c "echo --up &gt; /tmp/deklanche.d/pipe"
+	  dash -c "echo --up &gt; /tmp/deklanche.d/pipe"
 	</command>
       </action>
     </keybind>
@@ -599,7 +599,7 @@
     <keybind key="W-p">
       <action name="Execute">
 	<command>
-	  bash -c "CM_DIR=~/.local/share/clipmenu CM_LAUNCHER=rofi clipmenu -font \"Cantarell normal 13\" -color-window argb:FFFFFFFF,#929291,#4A4F51 -color-normal argb:00E8E8E7,#000000,argb:00E8E8E7,#4A90D9,#FFFFFF"
+	  dash -c "CM_DIR=~/.local/share/clipmenu CM_LAUNCHER=rofi clipmenu -font \"Cantarell normal 13\" -color-window argb:FFFFFFFF,#929291,#4A4F51 -color-normal argb:00E8E8E7,#000000,argb:00E8E8E7,#4A90D9,#FFFFFF"
 	</command>
       </action>
     </keybind>
@@ -719,7 +719,7 @@
     <keybind key="W-S-c">
       <action name="Execute">
 	<command>
-	  bash -c "eval $(xdotool getmouselocation --shell); xdotool mousemove --screen $SCREEN $(($(xprop -root _NET_WORKAREA | awk '{print $5}' | cut -d , -f 1) / 2)) 0; xdotool mousedown 1; xdotool mouseup 1; sleep 0.16; xdotool mousemove --screen $SCREEN $X $Y"
+	  dash -c "eval $(xdotool getmouselocation --shell); xdotool mousemove --screen $SCREEN $(($(xprop -root _NET_WORKAREA | awk '{print $5}' | cut -d , -f 1) / 2)) 0; xdotool mousedown 1; xdotool mouseup 1; sleep 0.16; xdotool mousemove --screen $SCREEN $X $Y"
 	</command>
       </action>
     </keybind>
