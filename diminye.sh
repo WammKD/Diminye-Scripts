@@ -54,82 +54,82 @@ clear
 		sudo add-apt-repository -y ppa:papirus/papirus
 		sudo apt-get            -y update
 
-		# Uncommented elements are things I'm uncertain about
-		sudo apt-get install --no-install-recommends \
-		             # ubuntu-drivers-common \
+		packagelist=(# ubuntu-drivers-common
 
 		             ### notifications
-		             dunst         \
-		             libnotify-bin \
-		             undistract-me \
+		             dunst
+		             libnotify-bin
+		             undistract-me
 
 		             ### internets
 		             network-manager
 
 		             ### compression
-		             zip unzip  \
-		             rar unrar  \
-		             p7zip-full \
+		             zip unzip
+		             rar unrar
+		             p7zip-full
 
 		             ### misc. utilities
-		             x11-utils         \  # xev,xfontsel,xkill,xprop,etc.
-		             x11-xserver-utils \  # xrandr,xset
-		             xfonts-utils      \  # mkfontdir
-		             fontconfig        \  # fc-cache
-		             wmctrl            \  # for use with deklanche
-		             xdotool           \  # for use with deklanche
-		             xsel              \  # for use with clipmenu
+		             x11-utils          # xev,xfontsel,xkill,xprop,etc.
+		             x11-xserver-utils  # xrandr,xset
+		             xfonts-utils       # mkfontdir
+		             fontconfig         # fc-cache
+		             wmctrl             # for use with deklanche
+		             xdotool            # for use with deklanche
+		             xsel               # for use with clipmenu
 
 		             ### desktop utilities/general-uses
-		             compton                   \
-		             xdg-user-dirs             \
-		             xdg-utils                 \
-		             gtk-update-icon-cache     \
-		             gtk3-nocsd                \
-		             ttf-ancient-fonts         \
-		             papirus-icon-theme        \
-		             # libreoffice-style-papirus \
-		             fonts-cantarell           \
-		             lxappearance              \
-		             lxappearance-obconf       \
+		             compton
+		             xdg-user-dirs
+		             xdg-utils
+		             gtk-update-icon-cache
+		             gtk3-nocsd
+		             ttf-ancient-fonts
+		             papirus-icon-theme
+		             # libreoffice-style-papirus
+		             fonts-cantarell
+		             lxappearance
+		             lxappearance-obconf
 
 		             ### desktop "panels"
-		             acpi     \  # for detecting battery and audio jack changes
-		             lemonbar \
-		             tint2    \
+		             acpi      # for detecting battery and audio jack changes
+		             lemonbar
+		             tint2
 
 		             ### audio
-		             pulseaudio \
-		             pulsemixer \
-		             alsa-utils \
+		             pulseaudio
+		             pulsemixer
+		             alsa-utils
 
 		             ### X11
-		             openbox      \
-		             xserver-xorg \
+		             openbox
+		             xserver-xorg
 
 		             ### applications
-		             rxvt-unicode          \
-		             skippy-xd             \
-		             rofi                  \
-		             i3lock                \
-		             # xautolock             \
-		             # btscanner             \  # bluetooth
-		             nitrogen              \
-		             gdebi                 \
-		             viewnior              \
-		             gnome-screenshot      \
-		             xarchiver             \
-		             gnome-calculator      \
-		             xfce4-power-manager   \
-		             thunar                \
-		             thunar-archive-plugin \
-		             thunar-volman         \
-		             catfish
+		             rxvt-unicode
+		             skippy-xd
+		             rofi
+		             i3lock
+		             # xautolock
+		             # btscanner              # bluetooth
+		             nitrogen
+		             gdebi
+		             viewnior
+		             gnome-screenshot
+		             xarchiver
+		             gnome-calculator
+		             xfce4-power-manager
+		             thunar
+		             thunar-archive-plugin
+		             thunar-volman
+		             catfish)
+		# Uncommented elements are things I'm uncertain about
+		sudo apt-get install --no-install-recommends ${packagelist[@]}
 
 		echo 'source /etc/profile.d/undistract-me.sh' >> ~/.bashrc
 
 		mkdir -p ~/.local/share/applications
-	  cp /usr/share/applications/rxvt-unicode.desktop ~/.local/share/applications
+		cp /usr/share/applications/rxvt-unicode.desktop ~/.local/share/applications
 		sed -i 's/urxvt_48x48.xpm/\/usr\/share\/icons\/Papirus\/64x64\/apps\/xterm.svg/g' ~/.local/share/applications/rxvt-unicode.desktop
 
 		cd /tmp
@@ -139,7 +139,7 @@ clear
 		sed -i 's/EDEDED/E8E8E7/g' Adwaita-openbox/openbox-3/themerc
 		sudo mv Adwaita-openbox/openbox-3/ /usr/share/themes/Adwaita/
 
-	  wget https://github.com/stark/siji/archive/master.tar.gz
+		wget https://github.com/stark/siji/archive/master.tar.gz
 		tar -zxvf master.tar.gz
 		rm master.tar.gz
 		cd siji-master
