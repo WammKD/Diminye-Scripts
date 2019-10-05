@@ -120,6 +120,7 @@ clear
 		             xarchiver
 		             gnome-calculator
 		             xfce4-power-manager
+		             gvfs
 		             thunar
 		             thunar-archive-plugin
 		             thunar-volman
