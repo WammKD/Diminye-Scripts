@@ -120,7 +120,8 @@ clear
 		             xarchiver
 		             gnome-calculator
 		             xfce4-power-manager
-		             gvfs
+		             gvfs                   # For external drives
+		             tumbler                # To generate image thumbnails
 		             thunar
 		             thunar-archive-plugin
 		             thunar-volman
