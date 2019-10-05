@@ -192,6 +192,9 @@ clear
 		### Skippy-XD
 		mkdir -p ~/.config/skippy-xd
 		cp skippy-xd/* ~/.config/skippy-xd/
+		### Thunar
+		mkdir -p ~/.config/Thunar
+		cp thunar/* ~/.config/Thunar/
 		### Tint2
 		mkdir -p ~/.config/tint2
 		cp tint2/tint2rc ~/.config/tint2/
