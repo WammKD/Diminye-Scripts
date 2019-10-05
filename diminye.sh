@@ -85,9 +85,10 @@ clear
 		             gtk-update-icon-cache
 		             gtk3-nocsd
 		             ttf-ancient-fonts
+		             fonts-cantarell
+		             gnome-themes-standard
 		             papirus-icon-theme
 		             # libreoffice-style-papirus
-		             fonts-cantarell
 		             lxappearance
 		             lxappearance-obconf
 
@@ -134,11 +135,6 @@ clear
 
 		cd /tmp
 
-		wget https://dllb2.pling.com/api/files/download/id/1460769000/s/86180935f5c0bd6473aa0d531720d5fe2c6c6f1ff3dda16c27a915378182c71571e8805e55f13926c5505d7d9542ca7db24814d55cae109833ddf13147528aa0/t/1569647258/c/abb8a4541090e6f8da74a667cff4eb7c24a689427448def8ecadd9f2ccb391f3c35e249abe9765af5134cc71edc3408163693e900911fdc2c7525d382e73ba34/lt/download/155042-Adwaita-openbox.obt
-		tar -zxvf 155042-Adwaita-openbox.obt
-		sed -i 's/EDEDED/E8E8E7/g' Adwaita-openbox/openbox-3/themerc
-		sudo mv Adwaita-openbox/openbox-3/ /usr/share/themes/Adwaita/
-
 		wget https://github.com/stark/siji/archive/master.tar.gz
 		tar -zxvf master.tar.gz
 		rm master.tar.gz
@@ -168,9 +164,11 @@ clear
 		cp dunst/dunstrc ~/.config/dunst/
 		### GTK Settings
 		mkdir -p ~/.config/gtk-3.0
-		cp gtk/settings.ini ~/.config/gtk-3.0/
+		     cp    gtk/settings.ini ~/.config/gtk-3.0/
 
-		cp gtk/.gtkrc-2.0   ~/
+		     cp    gtk/.gtkrc-2.0   ~/
+
+		sudo cp -r gtk/openbox-3    /usr/share/themes/Adwaita
 		### i3lock
 		sudo cp i3lock/xflock4 /usr/local/bin
 		### Lemonbar
