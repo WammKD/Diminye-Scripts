@@ -55,7 +55,7 @@ clear
 		sudo apt-get            -y update
 
 		# Uncommented elements are things I'm uncertain about
-		sudo apt-get install —no-install-recommends \
+		sudo apt-get install --no-install-recommends \
 		             # ubuntu-drivers-common \
 
 		             ### notifications
@@ -217,7 +217,7 @@ clear
 
 clear
 	notify_user "Setting openbox as x-session-manager"
-		sudo update-alternatives —set x-session-manager /usr/bin/openbox-session
+		sudo update-alternatives --set x-session-manager /usr/bin/openbox-session
 
 clear
 	read -p "Installation is finished. Please press ENTER to reboot."
