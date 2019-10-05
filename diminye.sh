@@ -201,6 +201,16 @@ clear
 		### XDG
 		cp xdg/user-dirs.dirs ~/.config
 
+		mkdir -p ~/Desktop
+		mkdir -p ~/Downloads
+		mkdir -p ~/Games
+		mkdir -p ~/Templates
+		mkdir -p ~/Public
+		mkdir -p ~/Documents
+		mkdir -p ~/Music
+		mkdir -p ~/Pictures
+		mkdir -p ~/Videos
+
 		cd /tmp
 
 clear
