@@ -116,9 +116,9 @@ clear
 		             nitrogen
 		             gdebi
 		             viewnior
-		             gnome-screenshot
-		             xarchiver
+		             file-roller
 		             gnome-calculator
+		             gnome-screenshot
 		             xfce4-power-manager
 		             gvfs                   # For external drives
 		             tumbler                # To generate image thumbnails
