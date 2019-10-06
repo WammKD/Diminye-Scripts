@@ -55,6 +55,7 @@ clear
 		sudo apt-get            -y update
 
 		packagelist=(# ubuntu-drivers-common
+		             # libavcodec-extra       # Allows things like watching Netflix
 
 		             ### notifications
 		             dunst
