@@ -1,22 +1,42 @@
 <?xml encoding="UTF-8" version="1.0"?>
 <actions>
 <action>
+	<icon>tools-media-optical-burn-image</icon>
+	<name>Mount Image</name>
+	<unique-id>1570340117293875-1</unique-id>
+	<command>udisksctl loop-setup -f %f</command>
+	<description>Mount ISO files</description>
+	<patterns>*.iso</patterns>
+	<startup-notify/>
+	<other-files/>
+</action>
+<action>
 	<icon>utilities-terminal</icon>
-	<name>Open Terminal Here</name>
-	<unique-id>1569552144032112-1</unique-id>
-	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
-	<description>Example for a custom action</description>
+	<name>Open Terminal</name>
+	<unique-id>1570313972003957-1</unique-id>
+	<command>exo-open --working-directory . --launch TerminalEmulator</command>
+	<description>Open terminal in current directory</description>
 	<patterns>*</patterns>
 	<startup-notify/>
 	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
 </action>
 <action>
 	<icon>edit-find</icon>
 	<name>Search</name>
-	<unique-id>1570247241923454-1</unique-id>
-	<command>catfish --path=%f</command>
-	<description>Search current directory</description>
+	<unique-id>1570307861151460-1</unique-id>
+	<command>catfish --path=.</command>
+	<description>Search from current directory</description>
 	<patterns>*</patterns>
 	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
 </action>
 </actions>
