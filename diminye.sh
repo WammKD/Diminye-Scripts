@@ -128,7 +128,7 @@ clear
 		             thunar-volman
 		             catfish)
 		# Uncommented elements are things I'm uncertain about
-		sudo apt-get install --no-install-recommends ${packagelist[@]}
+		sudo apt-get install --no-install-recommends -y ${packagelist[@]}
 
 		echo 'source /etc/profile.d/undistract-me.sh' >> ~/.bashrc
 
