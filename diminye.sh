@@ -177,6 +177,7 @@ clear
 		### GTK Settings
 		mkdir -p ~/.config/gtk-3.0
 		     cp    gtk/settings.ini ~/.config/gtk-3.0/
+		echo -e "file://$HOME/Documents\nfile://$HOME/Downloads\nfile://$HOME/Games\nfile://$HOME/Music\nfile://$HOME/Pictures\nfile://$HOME/Videos" > ~/.config/gtk-3.0/bookmarks
 
 		     cp    gtk/.gtkrc-2.0   ~/
 
