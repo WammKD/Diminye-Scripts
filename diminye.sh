@@ -122,6 +122,9 @@ clear
 		             gnome-screenshot
 		             xfce4-power-manager
 		             gvfs                   # For external drives
+		             exfat-fuse
+		             exfat-utils
+		             ntfs-3g
 		             tumbler                # To generate image thumbnails
 		             thunar
 		             thunar-archive-plugin
