@@ -34,21 +34,21 @@ fi
 
 
 
-new_current=$(cat $current_file)
-icon=$(case $new_current in
-	   [0-9]|[1-7][0-9]|8[0-5])
+percent=$(echo "scale = 2; (($(cat $current_file) / $max) * 100)" | bc | cut -d . -f 1)
+icon=$(case $percent in
+	   [0-9]|[1-2][0-9]|3[0-3])
 	       echo $(/usr/bin/printf '\ue1bc')
 	       ;;
-	   8[6-9]|9[0-9]|1[0-6][0-9]|170)
+	   3[4-9]|[4-5][0-9]|6[0-7])
 	       echo $(/usr/bin/printf '\ue1c3')
 		   ;;
-	   1[7-9][0-9]|2[0-4][0-9]|25[0-5])
+	   6[8-9]|[7-9][0-9]|100)
 	       echo $(/usr/bin/printf '\ue1c2')
 	       ;;
 	   *)
 	       echo "ERROR"
 	       ;;
        esac)
-percent=$(echo "scale = 2; (($new_current / $max) * 100)" | bc)
 
-echo "brightness%{U#ca71df}%{+u}%{F#ca71df} $icon %{F#FFFFFF}$(if [ ${#percent} -eq 6 ]; then echo 100; else echo $(echo $percent | cut -d . -f 1)%; fi) %{-u}" > "/tmp/lemon/panel_fifo"
+
+echo "brightness%{U#ca71df}%{+u}%{F#ca71df} $icon %{F#FFFFFF}$(if [ ${#percent} -eq 3 ]; then echo 100; else echo $percent%; fi) %{-u}" > "/tmp/lemon/panel_fifo"
