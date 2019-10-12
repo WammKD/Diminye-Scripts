@@ -212,6 +212,8 @@ clear
 		### Tint2
 		mkdir -p ~/.config/tint2
 		cp tint2/tint2rc ~/.config/tint2/
+		### Toggle Swap
+		sudo cp ram_management/toggle_swap.sh /usr/local/bin
 		### Xdefaults
 		cp urxvt/.Xdefaults ~
 		### XDG
