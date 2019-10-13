@@ -74,6 +74,7 @@ clear
 		             x11-utils          # xev,xfontsel,xkill,xprop,etc.
 		             x11-xserver-utils  # xrandr,xset
 		             xfonts-utils       # mkfontdir
+		             mesa-utils         # glxinfo for inxi; it's only 137kB
 		             fontconfig         # fc-cache
 		             wmctrl             # for use with deklanche
 		             xdotool            # for use with deklanche
@@ -81,6 +82,7 @@ clear
 
 		             ### desktop utilities/general-uses
 		             compton
+		             inxi                       # For system info.; it's only 638kB
 		             xdg-user-dirs
 		             xdg-utils
 		             gtk-update-icon-cache

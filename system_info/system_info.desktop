@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=System Info.
+Comment=Provides information on the running system
+Icon=hwinfo
+Exec=urxvt -sr -bl -g 171x45 -e system_info.sh
+Terminal=false
+Categories=System;
