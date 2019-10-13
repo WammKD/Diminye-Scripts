@@ -67,4 +67,4 @@ then
     notify-send "Low battery;$(echo $data | cut -d , -f 3)." -i notification-battery-low
 fi
 
-echo "battery%{+u}$stuff %{-u}" > "/tmp/lemon/panel_fifo"
+echo "battery%{A:xfce4-power-manager-settings &:}%{+u}$stuff %{-u}%{A}" > "/tmp/lemon/panel_fifo"
