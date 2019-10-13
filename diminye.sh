@@ -180,7 +180,7 @@ clear
 		### GTK Settings
 		mkdir -p ~/.config/gtk-3.0
 		     cp    gtk/settings.ini ~/.config/gtk-3.0/
-		echo -e "file://$HOME/Documents\nfile://$HOME/Downloads\nfile://$HOME/Games\nfile://$HOME/Music\nfile://$HOME/Pictures\nfile://$HOME/Videos" > ~/.config/gtk-3.0/bookmarks
+		echo -e "file://$HOME/Documents\nfile://$HOME/Downloads\nfile://$HOME/Games\nfile://$HOME/Music\nfile://$HOME/Pictures\nfile://$HOME/tmp\nfile://$HOME/Videos" > ~/.config/gtk-3.0/bookmarks
 
 		     cp    gtk/.gtkrc-2.0   ~/
 
@@ -227,6 +227,7 @@ clear
 		mkdir -p ~/Documents
 		mkdir -p ~/Music
 		mkdir -p ~/Pictures
+		ln -s /tmp/ ~/tmp
 		mkdir -p ~/Videos
 
 		cd /tmp
