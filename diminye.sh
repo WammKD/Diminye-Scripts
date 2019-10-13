@@ -187,6 +187,8 @@ clear
 		sudo cp -r gtk/openbox-3    /usr/share/themes/Adwaita
 		### i3lock
 		sudo cp i3lock/xflock4 /usr/local/bin
+		### Keyboard
+		# sudo sed -i 's/XKBOPTIONS=""/XKBOPTIONS="compose:ralt"/g' /etc/default/keyboard
 		### Lemonbar
 		sudo cp lemonbar/lemon*.sh /usr/local/bin
 
