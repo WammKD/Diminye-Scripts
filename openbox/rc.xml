@@ -711,7 +711,7 @@
     <keybind key="W-S-w">
       <action name="Execute">
 	<command>
-	  urxvt -sr -bl -g 171x45 -e lemon_weather_launcher.sh
+	  urxvt -sr -bl -e dash -c 'sleep 0.1 &amp;&amp; wmctrl -r :ACTIVE: -b add,maximized_horz,maximized_vert &amp;&amp; lemon_weather_launcher.sh'
 	</command>
       </action>
     </keybind>

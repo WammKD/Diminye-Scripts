@@ -3,6 +3,6 @@ Type=Application
 Name=System Info.
 Comment=Provides information on the running system
 Icon=hwinfo
-Exec=urxvt -sr -bl -g 171x45 -e system_info.sh
+Exec=urxvt -sr -bl -e dash -c 'sleep 0.1 && wmctrl -r :ACTIVE: -b add,maximized_horz,maximized_vert && system_info.sh'
 Terminal=false
 Categories=System;
