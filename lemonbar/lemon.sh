@@ -27,6 +27,10 @@ mkfifo "$fifo"
 #  Elements  #
 ##############
 
+updateNotifier() {
+    lemon_updates.sh
+}
+
 clock() {  # sudo dpkg-reconfigure tzdata   to change timezone
     date_time=$(date '+%a: %B %d, %Y_%X, %Z')
 
@@ -146,15 +150,16 @@ partitions() {
 
 
 # Run each element in a subshell and output to fifo
-while :; do       clock   ; sleep     1s; done > "$fifo" &
-while :; do     battery 59; sleep 1m 40s; done > "$fifo" &
-while :; do        wifi   ; sleep    20s; done > "$fifo" &
-while :; do     weather   ; sleep    15m; done > "$fifo" &
-while :; do      volume   ; sleep    30s; done > "$fifo" &
-while :; do  brightness   ; sleep    15m; done > "$fifo" &
-while :; do   inhibitor   ; sleep    30s; done > "$fifo" &
-while :; do performance   ; sleep     1s; done > "$fifo" &
-while :; do  partitions   ; sleep     1m; done > "$fifo" &
+while :; do updateNotifier   ; sleep     4h; done > "$fifo" &
+while :; do          clock   ; sleep     1s; done > "$fifo" &
+while :; do        battery 59; sleep 1m 40s; done > "$fifo" &
+while :; do           wifi   ; sleep    20s; done > "$fifo" &
+while :; do        weather   ; sleep    15m; done > "$fifo" &
+while :; do         volume   ; sleep    30s; done > "$fifo" &
+while :; do     brightness   ; sleep    15m; done > "$fifo" &
+while :; do      inhibitor   ; sleep    30s; done > "$fifo" &
+while :; do    performance   ; sleep     1s; done > "$fifo" &
+while :; do     partitions   ; sleep     1m; done > "$fifo" &
 
 
 ###################
@@ -164,6 +169,9 @@ while :; do  partitions   ; sleep     1m; done > "$fifo" &
 while read -r line
 do
     case $line in
+	noti*)
+	    noti=$(echo $line | awk '{ string=substr($0, 5); print string; }')
+	    ;;
         clock*)
             clock=$(echo $line | awk '{ string=substr($0, 6); print string; }')
             ;;
@@ -193,7 +201,7 @@ do
             ;;
     esac
 
-    printf "%s\n" "%{l}  ${partitions}   ${performance}%{c}${clock}%{r}${weather}   ${inhibitor}   ${volume}   ${brightness}   ${wifi}   ${battery}  "
+    printf "%s\n" "%{l}  ${partitions}   ${performance}%{c}${clock}%{r}${noti}   ${weather}   ${inhibitor}   ${volume}   ${brightness}   ${wifi}   ${battery}  "
 done < "$fifo" | lemonbar -p                                                                     \
                           -g $(xprop -root _NET_WORKAREA | awk '{gsub(/,/,"");print $5}')x19+0+0 \
                           -B '#FF000000'                                                         \
