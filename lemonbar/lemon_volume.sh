@@ -15,6 +15,8 @@ then
 fi
 
 
+sleep 0.03
+
 data=$(amixer -M -c1 sget Master)
 level=$(echo $data | awk -F"[][]" '/dB/ { print $2 }')
 icon=$(if
