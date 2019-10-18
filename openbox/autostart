@@ -21,6 +21,7 @@ xset +fp ~/.local/share/fonts &
 xset fp rehash &
 CM_DIR=~/.local/share/clipmenu CM_SELECTIONS=clipboard clipmenud &
 tint2 &
+/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 (sleep 1s && nitrogen --restore) &
 (sleep 2s && lemon.sh) &
 (sleep 3s && dunst) &

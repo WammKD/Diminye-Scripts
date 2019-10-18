@@ -85,6 +85,7 @@ clear
 		             inxi                       # For system info.; it's only 638kB
 		             xdg-user-dirs
 		             xdg-utils
+		             policykit-1-gnome          # To be able to use policykit app.s (e.g. pkexec)
 		             gtk-update-icon-cache
 		             gtk3-nocsd
 		             ttf-ancient-fonts
