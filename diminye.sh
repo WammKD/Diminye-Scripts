@@ -95,6 +95,10 @@ clear
 		             # libreoffice-style-papirus
 		             lxappearance
 		             lxappearance-obconf
+		             # gnome-keyring
+		             # gnome-keyring-pkcs11
+		             # seahorse
+		             # libsecret-1-dev
 
 		             ### desktop "panels"
 		             acpi      # for detecting battery and audio jack changes
