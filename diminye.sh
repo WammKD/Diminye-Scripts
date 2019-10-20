@@ -142,6 +142,11 @@ clear
 
 		echo 'source /etc/profile.d/undistract-me.sh' >> ~/.bashrc
 
+		# Setup Gnome-Keyring for automatic unlock on login
+		#sudo sed -i 's/auth       optional   pam_group.so/auth       optional   pam_group.so\nauth       optional   pam_gnome_keyring.so/' /etc/pam.d/login
+		#sudo sed -i 's/session    optional   pam_keyinit.so force revoke/session    optional   pam_keyinit.so       force revoke\nsession    optional   pam_gnome_keyring.so auto_start/' /etc/pam.d/login
+		#sudo sed -i 's/@/password      optional   pam_gnome_keyring.so\n\n@/' /etc/pam.d/passwd
+
 		mkdir -p ~/.local/share/applications
 		cp /usr/share/applications/rxvt-unicode.desktop ~/.local/share/applications
 		sed -i 's/urxvt_48x48.xpm/\/usr\/share\/icons\/Papirus\/64x64\/apps\/xterm.svg/g' ~/.local/share/applications/rxvt-unicode.desktop
