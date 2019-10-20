@@ -511,6 +511,10 @@
       <action name="ToggleShowDesktop" />
     </keybind>
 
+    <keybind key="W-A-Right">
+      <action name="Move" />
+    </keybind>
+
     <!-- Keybindings for windows -->
     <keybind key="A-F4">
       <action name="Close"/>
