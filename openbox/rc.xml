@@ -515,6 +515,10 @@
       <action name="Move" />
     </keybind>
 
+    <keybind key="W-A-Left">
+      <action name="Resize" />
+    </keybind>
+
     <!-- Keybindings for windows -->
     <keybind key="A-F4">
       <action name="Close"/>
