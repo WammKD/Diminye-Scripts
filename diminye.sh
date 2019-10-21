@@ -91,6 +91,7 @@ clear
 		             ttf-ancient-fonts
 		             fonts-cantarell
 		             gnome-themes-standard
+		             adwaita-icon-theme-full    # For the cursors
 		             papirus-icon-theme
 		             # libreoffice-style-papirus
 		             lxappearance
