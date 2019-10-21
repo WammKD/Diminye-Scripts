@@ -237,7 +237,7 @@ clear
 		mkdir -p ~/Desktop
 		mkdir -p ~/Downloads
 		mkdir -p ~/Games
-		mkdir -p ~/Templates
+		cp -r Templates ~/
 		mkdir -p ~/Public
 		mkdir -p ~/Documents
 		mkdir -p ~/Music

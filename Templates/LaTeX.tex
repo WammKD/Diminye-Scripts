@@ -1,0 +1,70 @@
+% Homework Template by Gunnar Atli Sigurdsson, tweaked by Jonathan Schmeling
+% --------------------------------------------------------------------------
+\documentclass{article}
+\usepackage{amsmath,graphicx}
+\usepackage{epstopdf}
+\usepackage{pdfsync}
+\usepackage{fancyhdr}
+\usepackage{url} %e.g. \url{www.hi.is}
+\usepackage{lastpage}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{ifthen}
+\usepackage{datetime}
+
+
+
+\newdateformat{mydate}
+  {\monthname\ \ordinalnum{\THEDAY}, \THEYEAR}
+\newcommand{\titleInfo}
+  {Title}
+\newcommand{\authorName}
+  {Author's Name}
+\newcommand{\classTitle}
+  {Class's Name}
+\newcommand{\schoolInfo}
+  {University/College's Name, \the\year\\ Grader: Grader's Name}
+
+\pagestyle{fancy}
+  \lhead{\small{\authorName}}
+  \chead{\small{\ifthenelse{\value{page} > 1} {\textbf{\titleInfo}} {}}}
+  \rhead{\small{\textit{\mydate\today}}}
+  \lfoot{\textit{Page \textbf{\thepage} of \pageref{LastPage}}}
+  \cfoot{}
+  \rfoot{}
+
+%short title-page
+\newcommand{\shortmaketitle} {
+  \begin{center}
+    \huge\titleInfo
+
+    \vspace{0.3cm}
+    \large\classTitle
+    % \vspace{0.3cm}
+
+    % \textit{\schoolInfo}
+    \normalsize
+    \vspace{1.5pc}
+  \end{center}
+}
+
+\title{\titleInfo}
+\author{\authorName}
+
+
+
+\begin{document}
+  % \setlength{\parindent}{0pt}
+  \pdfmapline{cmu10 CMU10 " -0.25 SlantFont " <cmu10.pfb}
+  \shortmaketitle
+  \newcounter{rowno}
+
+  \section{Problem Title}
+    \textit{Repetition of the problem.}\vspace{2pc}
+
+    Solution to the problem.\clearpage
+
+  \section{Problem Title}
+    \textit{Repetition of Problem 2.}\vspace{2pc}
+
+    Answer to problem 2.
+\end{document}

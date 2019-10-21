@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Link
+Icon[en_US]=emblem-symbolic-link
+URL=file:///home
+Name[en_US]=Home
+Name=Home
+Icon=emblem-symbolic-link
