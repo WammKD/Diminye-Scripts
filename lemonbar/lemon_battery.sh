@@ -23,7 +23,7 @@ notify_p=$(if
 stuff=$(if
             [ "${BATTERY_STATE}" = "Full" ] || [ "${BATTERY_POWER}" -eq 100 ]
         then
-            result="%{U$color_charging}%{F$color_charging}$(/usr/bin/printf '\ue201')"
+            result="%{U$color_charging} %{F$color_charging}$(/usr/bin/printf '\ue201')"
             percent="$BATTERY_POWER"
         else
             if
