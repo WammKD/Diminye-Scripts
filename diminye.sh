@@ -98,6 +98,7 @@ clear
 		             lxappearance-obconf
 		             # gnome-keyring
 		             # gnome-keyring-pkcs11
+		             # libpam-gnome-keyring
 		             # seahorse
 		             # libsecret-1-dev
 
