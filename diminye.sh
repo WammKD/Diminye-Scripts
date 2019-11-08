@@ -131,6 +131,8 @@ clear
 		             gnome-screenshot
 		             xfce4-power-manager
 		             gvfs                   # For external drives
+		             gvfs-backends          # For archive, ftp, http, mpt, smb…
+		             gvfs-bin               # Basically, remote network access in Thunar
 		             exfat-fuse
 		             exfat-utils
 		             ntfs-3g
