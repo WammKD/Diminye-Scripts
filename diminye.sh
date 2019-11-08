@@ -96,11 +96,11 @@ clear
 		             # libreoffice-style-papirus
 		             lxappearance
 		             lxappearance-obconf
-		             # gnome-keyring
-		             # gnome-keyring-pkcs11
-		             # libpam-gnome-keyring
-		             # seahorse
-		             # libsecret-1-dev
+		             gnome-keyring
+		             gnome-keyring-pkcs11       # For a certificate database
+		             libpam-gnome-keyring       # Hopefully handle login unlocking
+		             seahorse                   # GUI
+		             libsecret-1-dev            # For Git functionality
 
 		             ### desktop "panels"
 		             acpi      # for detecting battery and audio jack changes
@@ -143,6 +143,12 @@ clear
 		             catfish)
 		# Commented out elements are things I'm uncertain about
 		sudo apt-get install --no-install-recommends -y ${packagelist[@]}
+
+		# Setup Git with Gnome Keyring
+		cd /usr/share/doc/git/contrib/credential/libsecret
+		sudo make
+		git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
+		cd /tmp
 
 		echo 'source /etc/profile.d/undistract-me.sh' >> ~/.bashrc
 
