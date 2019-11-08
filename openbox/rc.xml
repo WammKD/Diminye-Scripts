@@ -612,6 +612,14 @@
       </action>
     </keybind>
 
+		<keybind key="W-u">
+			<action name="Execute">
+				<command>
+					lemon_updates.sh update
+				</command>
+			</action>
+		</keybind>
+
     <keybind key="W-i">
       <action name="Execute">
 	<command>
