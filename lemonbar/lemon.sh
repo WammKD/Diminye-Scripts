@@ -46,60 +46,63 @@ wifi() {
 }
 
 weather() {
-    data=$(wget https://wttr.in/?format="%c_%t_%m_%p_%w" 2>/dev/null -O - | sed 's/+//g')
-    icon=$(case $(echo $data | cut -d_ -f1) in
-	       "⛅️")
-                   echo $(case $(date '+%H') in
-			      0[0-6]|19|2[0-9])
-				  echo $(/usr/bin/printf '\ue232')
-				  ;;
-			      *)
-				  echo $(/usr/bin/printf '\ue231')
-				  ;;
-			  esac)
-		   ;;
-	       "🌫")
-                   echo $(/usr/bin/printf '\ue235')
-		   ;;
-	       "🌦")
-		   echo $(/usr/bin/printf '\ue230')
-		   ;;
-               "☀️")
-                   echo $(case $(date '+%H') in
-			      0[0-6]|19|2[0-9])
-				  echo $(/usr/bin/printf '\ue233')
-				  ;;
-			      *)
-				  echo $(/usr/bin/printf '\ue234')
-				  ;;
-			  esac)
-                   ;;
-	       "☁️")
-		   echo $(/usr/bin/printf '\ue22b')
-		   ;;
-	       "⛈")
-		   echo $(/usr/bin/printf '\ue22d')
-		   ;;
-	       "🌩")
-		   echo $(/usr/bin/printf '\ue22c')
-		   ;;
-	       *)
-		   echo "ERROR"
-		   ;;
-	   esac)
-    text=$(result=$(echo $data | cut -d_ -f2)
+	data=$(wget https://wttr.in/?format="%c_%t_%m_%p_%w" 2>/dev/null -O - | sed 's/+//g')
+	icon=$(case $(echo $data | cut -d_ -f1) in
+	       	"⛅️")
+	       		echo $(case $(date '+%H') in
+	       		       	0[0-6]|19|2[0-9])
+	       		       		echo $(/usr/bin/printf '\ue232')
+	       		       		;;
+	       		       	*)
+	       		       		echo $(/usr/bin/printf '\ue231')
+	       		       		;;
+	       		       esac)
+	       		;;
+	       	"🌫")
+	       		echo $(/usr/bin/printf '\ue235')
+	       		;;
+	       	"🌦")
+	       		echo $(/usr/bin/printf '\ue230')
+	       		;;
+	       	"☀️")
+	       		echo $(case $(date '+%H') in
+	       		       	0[0-6]|19|2[0-9])
+	       		       		echo $(/usr/bin/printf '\ue233')
+	       		       		;;
+	       		       	*)
+	       		       		echo $(/usr/bin/printf '\ue234')
+	       		       		;;
+	       		       esac)
+	       		;;
+	       	"☁️")
+	       		echo $(/usr/bin/printf '\ue22b')
+	       		;;
+	       	"⛈"|"🌧")
+	       		echo $(/usr/bin/printf '\ue22d')
+	       		;;
+	       	"🌩")
+	       		echo $(/usr/bin/printf '\ue22c')
+	       		;;
+	       	"🌨")
+	       		echo $(/usr/bin/printf '\ue22f')
+	       		;;
+	       	*)
+	       		echo "ERROR"
+	       		;;
+	       esac)
+	text=$(result=$(echo $data | cut -d_ -f2)
 
-	   if
-	       [ ${#result} -gt 6 ]
-	   then
-	       echo ""
-	   else
-	       echo $result
-	   fi)
+	       if
+	       	[ ${#result} -gt 6 ]
+	       then
+	       	echo ""
+	       else
+	       	echo $result
+	       fi)
 
-    #printf "%s\n" "weather%{U#7e57c2}%{+u}%{F#7e57c2}$icon %{F#FFFFFF}$(cut -d_ -f2 <<< $data) %{F#7e57c2}| %{F#FFFFFF}$(cut -d_ -f4 <<< $data) %{F#7e57c2}| %{F#FFFFFF}$(cut -d_ -f5 <<< $data)%{-u}"
-    #printf "%s\n" "weather%{U#7e57c2}%{+u}%{F#7e57c2}$icon %{F#FFFFFF}$(cut -d_ -f2 <<< $data)  %{F#7e57c2}$(cut -d_ -f3 <<< $data) %{F#FFFFFF}$(cut -d_ -f4 <<< $data) %{F#7e57c2}| %{F#FFFFFF}$(cut -d_ -f5 <<< $data)%{-u}"
-    printf "%s\n" "weather%{A:urxvt -sr -bl -e dash -c 'sleep 0.1 && wmctrl -r \:ACTIVE\: -b add,maximized_horz,maximized_vert && lemon_weather_launcher.sh' &:}%{U#f06292}%{+u}%{F#f06292} $icon %{F#FFFFFF}$text %{-u}%{A}"
+	#printf "%s\n" "weather%{U#7e57c2}%{+u}%{F#7e57c2}$icon %{F#FFFFFF}$(cut -d_ -f2 <<< $data) %{F#7e57c2}| %{F#FFFFFF}$(cut -d_ -f4 <<< $data) %{F#7e57c2}| %{F#FFFFFF}$(cut -d_ -f5 <<< $data)%{-u}"
+	#printf "%s\n" "weather%{U#7e57c2}%{+u}%{F#7e57c2}$icon %{F#FFFFFF}$(cut -d_ -f2 <<< $data)  %{F#7e57c2}$(cut -d_ -f3 <<< $data) %{F#FFFFFF}$(cut -d_ -f4 <<< $data) %{F#7e57c2}| %{F#FFFFFF}$(cut -d_ -f5 <<< $data)%{-u}"
+	printf "%s\n" "weather%{A:urxvt -sr -bl -e dash -c 'sleep 0.1 && wmctrl -r \:ACTIVE\: -b add,maximized_horz,maximized_vert && lemon_weather_launcher.sh' &:}%{U#f06292}%{+u}%{F#f06292} $icon %{F#FFFFFF}$text %{-u}%{A}"
 }
 
 inhibitor() {
