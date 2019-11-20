@@ -153,7 +153,7 @@ partitions() {
 
 
 # Run each element in a subshell and output to fifo
-while :; do updateNotifier   ; sleep     4h; done > "$fifo" &
+while :; do updateNotifier   ; sleep     2h; done > "$fifo" &
 while :; do          clock   ; sleep     1s; done > "$fifo" &
 while :; do        battery 59; sleep 1m 40s; done > "$fifo" &
 while :; do           wifi   ; sleep    20s; done > "$fifo" &
