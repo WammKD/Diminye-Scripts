@@ -19,7 +19,7 @@
 mkdir /tmp/deklanche.d && echo "while true; do deklanche \$(cat < /tmp/deklanche.d/pipe); done" > /tmp/deklanche.d/deklanched && mkfifo /tmp/deklanche.d/pipe && dash /tmp/deklanche.d/deklanched &
 xset +fp ~/.local/share/fonts &
 xset fp rehash &
-dbus-update-activation-environment --systemd DISPLAY
+dbus-update-activation-environment --systemd DISPLAY &
 CM_DIR=~/.local/share/clipmenu CM_SELECTIONS=clipboard clipmenud &
 tint2 &
 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
