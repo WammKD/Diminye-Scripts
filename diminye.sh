@@ -123,7 +123,8 @@ clear
 		             rofi
 		             i3lock
 		             # xautolock
-		             # btscanner              # bluetooth
+		             # bluez                # bluetooth
+		             # btscanner            # bluetooth
 		             nitrogen
 		             gdebi
 		             viewnior
