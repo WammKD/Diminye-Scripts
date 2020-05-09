@@ -45,5 +45,5 @@ urxvt*pastableTabs: false
 
 urxvt*keysym.Shift-Control-V: eval:paste_clipboard
 urxvt*keysym.Shift-Control-C: eval:selection_to_clipboard
-urxvt*perl-ext-common: "default, -searchable-scrollback"
+urxvt*searchable-scrollback: false
 urxvt*iso14755: false
