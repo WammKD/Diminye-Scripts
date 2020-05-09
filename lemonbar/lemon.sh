@@ -86,6 +86,9 @@ weather() {
 	       	"🌨")
 	       		echo $(/usr/bin/printf '\ue22f')
 	       		;;
+	       	"❄️")
+	       		echo $(/usr/bin/printf '\ue22e')
+	       		;;
 	       	*)
 	       		echo "ERROR"
 	       		;;
