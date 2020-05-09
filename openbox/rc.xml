@@ -620,6 +620,14 @@
 			</action>
 		</keybind>
 
+		<keybind key="W-S-u">
+			<action name="Execute">
+				<command>
+					lemon_updates.sh dist
+				</command>
+			</action>
+		</keybind>
+
     <keybind key="W-i">
       <action name="Execute">
 	<command>
