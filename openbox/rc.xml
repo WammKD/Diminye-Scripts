@@ -660,29 +660,29 @@
       </action>
     </keybind>
 
-    <keybind key="W-t">
-      <action name="Execute">
-	<command>
-	  urxvt
-	</command>
-      </action>
-    </keybind>
+		<keybind key="W-t">
+			<action name="Execute">
+				<command>
+					x-terminal-emulator
+				</command>
+			</action>
+		</keybind>
 
-    <keybind key="W-h">
-      <action name="Execute">
-	<command>
-	  urxvt -e htop
-	</command>
-      </action>
-    </keybind>
+		<keybind key="W-h">
+			<action name="Execute">
+				<command>
+					x-terminal-emulator -e htop
+				</command>
+			</action>
+		</keybind>
 
-    <keybind key="W-e">
-      <action name="Execute">
-	<command>
-	  urxvt -e emacs -nw
-	</command>
-      </action>
-    </keybind>
+		<keybind key="W-e">
+			<action name="Execute">
+				<command>
+					x-terminal-emulator -e emacs -nw
+				</command>
+			</action>
+		</keybind>
 
     <keybind key="W-S-e">
       <action name="Execute">
@@ -716,29 +716,29 @@
       </action>
     </keybind>
 
-    <keybind key="W-n">
-      <action name="Execute">
-	<command>
-	  urxvt -sr -bl -e nmtui
-	</command>
-      </action>
-    </keybind>
+		<keybind key="W-n">
+			<action name="Execute">
+				<command>
+					x-terminal-emulator -e nmtui
+				</command>
+			</action>
+		</keybind>
 
-    <keybind key="W-v">
-      <action name="Execute">
-	<command>
-	  urxvt -sr -bl -e pulsemixer
-	</command>
-      </action>
-    </keybind>
+		<keybind key="W-v">
+			<action name="Execute">
+				<command>
+					x-terminal-emulator -e pulsemixer
+				</command>
+			</action>
+		</keybind>
 
-    <keybind key="W-S-w">
-      <action name="Execute">
-	<command>
-	  urxvt -sr -bl -e dash -c 'sleep 0.1 &amp;&amp; wmctrl -r :ACTIVE: -b add,maximized_horz,maximized_vert &amp;&amp; lemon_weather_launcher.sh'
-	</command>
-      </action>
-    </keybind>
+		<keybind key="W-S-w">
+			<action name="Execute">
+				<command>
+					x-terminal-emulator -e dash -c 'sleep 0.1 &amp;&amp; wmctrl -r :ACTIVE: -b add,fullscreen &amp;&amp; lemon_weather_launcher.sh'
+				</command>
+			</action>
+		</keybind>
 
     <keybind key="W-S-c">
       <action name="Execute">
@@ -1397,6 +1397,12 @@
 	no
       </decor>
     </application>
+
+		<application class="*">
+			<focus>
+				yes
+			</focus>
+		</application>
 
     <!-- # This is an example with comments through out. Use these to make
 	 # your own rules, but without the comments of course.
