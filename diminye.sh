@@ -234,6 +234,9 @@ clear
 		### Skippy-XD
 		mkdir -p ~/.config/skippy-xd
 		cp skippy-xd/* ~/.config/skippy-xd/
+		### System Info.
+		sudo cp system_info/system_info.sh      /usr/local/bin
+		sudo cp system_info/system_info.desktop /usr/share/applications
 		### Thunar
 		mkdir -p ~/.config/Thunar
 		cp thunar/* ~/.config/Thunar/
