@@ -118,7 +118,7 @@ clear
 		             xserver-xorg
 
 		             ### applications
-		             rxvt-unicode
+		             lxterminal
 		             skippy-xd
 		             rofi
 		             i3lock
@@ -159,9 +159,11 @@ clear
 		#sudo sed -i 's/session    optional   pam_keyinit.so force revoke/session    optional   pam_keyinit.so       force revoke\nsession    optional   pam_gnome_keyring.so auto_start/' /etc/pam.d/login
 		#sudo sed -i 's/@/password      optional   pam_gnome_keyring.so\n\n@/' /etc/pam.d/passwd
 
-		mkdir -p ~/.local/share/applications
-		cp /usr/share/applications/rxvt-unicode.desktop ~/.local/share/applications
-		sed -i 's/urxvt_48x48.xpm/\/usr\/share\/icons\/Papirus\/64x64\/apps\/xterm.svg/g' ~/.local/share/applications/rxvt-unicode.desktop
+		# mkdir -p ~/.local/share/applications
+		# cp /usr/share/applications/rxvt-unicode.desktop ~/.local/share/applications
+		# sed -i 's/urxvt_48x48.xpm/\/usr\/share\/icons\/Papirus\/64x64\/apps\/xterm.svg/g' ~/.local/share/applications/rxvt-unicode.desktop
+		mkdir -p ~/.config/lxterminal
+		cp lxterminal/lxterminal.conf ~/.config/lxterminal
 
 		cd /tmp
 
