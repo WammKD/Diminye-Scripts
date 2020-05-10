@@ -3,12 +3,12 @@
 if
 	[ "$1" = update ]
 then
-	x-terminal-emulator -e dash -c "sleep 0.1 && wmctrl -r :ACTIVE: -b add,maximized_horz,maximized_vert && sudo apt-get update && sudo apt-get upgrade && lemon_updates.sh" &
+	x-terminal-emulator -e dash -c "sleep 0.1 && wmctrl -r :ACTIVE: -b add,fullscreen && sudo apt-get update && sudo apt-get upgrade && lemon_updates.sh" &
 else
 	if
 		[ "$1" = dist ]
 	then
-		x-terminal-emulator -e dash -c "sleep 0.1 && wmctrl -r :ACTIVE: -b add,maximized_horz,maximized_vert && sudo apt-get update && sudo apt-get dist-upgrade && lemon_updates.sh" &
+		x-terminal-emulator -e dash -c "sleep 0.1 && wmctrl -r :ACTIVE: -b add,fullscreen && sudo apt-get update && sudo apt-get dist-upgrade && lemon_updates.sh" &
 	else
 		updates_and_security=$(/usr/lib/update-notifier/apt-check --human-readable | cut -d \  -f 1)
 
