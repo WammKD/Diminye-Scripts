@@ -3,12 +3,12 @@
 if
 	[ "$1" = update ]
 then
-	urxvt -sr -bl -e dash -c "sleep 0.1 && wmctrl -r :ACTIVE: -b add,maximized_horz,maximized_vert && sudo apt-get update && sudo apt-get upgrade && lemon_updates.sh" &
+	x-terminal-emulator -e dash -c "sleep 0.1 && wmctrl -r :ACTIVE: -b add,maximized_horz,maximized_vert && sudo apt-get update && sudo apt-get upgrade && lemon_updates.sh" &
 else
 	if
 		[ "$1" = dist ]
 	then
-		urxvt -sr -bl -e dash -c "sleep 0.1 && wmctrl -r :ACTIVE: -b add,maximized_horz,maximized_vert && sudo apt-get update && sudo apt-get dist-upgrade && lemon_updates.sh" &
+		x-terminal-emulator -e dash -c "sleep 0.1 && wmctrl -r :ACTIVE: -b add,maximized_horz,maximized_vert && sudo apt-get update && sudo apt-get dist-upgrade && lemon_updates.sh" &
 	else
 		updates_and_security=$(/usr/lib/update-notifier/apt-check --human-readable | cut -d \  -f 1)
 
@@ -25,7 +25,7 @@ else
 		             	         	echo ""
 		             	         fi)
 
-		             	echo -n "%{A:urxvt -sr -bl -e dash -c \"sleep 0.1 && wmctrl -r \:ACTIVE\: -b add,maximized_horz,maximized_vert && sudo apt-get update && sudo apt-get upgrade && lemon_updates.sh\" &:}%{U#5c6bc0}%{+u} %{F#5c6bc0}$(/usr/bin/printf '\ue0b3')$second %{F#FFFFFF}$number_of_updates %{-u}%{A}"
+		             	echo -n "%{A:x-terminal-emulator -e dash -c \"sleep 0.1 && wmctrl -r \:ACTIVE\: -b add,maximized_horz,maximized_vert && sudo apt-get update && sudo apt-get upgrade && lemon_updates.sh\" &:}%{U#5c6bc0}%{+u} %{F#5c6bc0}$(/usr/bin/printf '\ue0b3')$second %{F#FFFFFF}$number_of_updates %{-u}%{A}"
 		             else
 		             	echo -n ""
 		             fi) > "/tmp/lemon/panel_fifo"

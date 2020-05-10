@@ -105,7 +105,7 @@ weather() {
 
 	#printf "%s\n" "weather%{U#7e57c2}%{+u}%{F#7e57c2}$icon %{F#FFFFFF}$(cut -d_ -f2 <<< $data) %{F#7e57c2}| %{F#FFFFFF}$(cut -d_ -f4 <<< $data) %{F#7e57c2}| %{F#FFFFFF}$(cut -d_ -f5 <<< $data)%{-u}"
 	#printf "%s\n" "weather%{U#7e57c2}%{+u}%{F#7e57c2}$icon %{F#FFFFFF}$(cut -d_ -f2 <<< $data)  %{F#7e57c2}$(cut -d_ -f3 <<< $data) %{F#FFFFFF}$(cut -d_ -f4 <<< $data) %{F#7e57c2}| %{F#FFFFFF}$(cut -d_ -f5 <<< $data)%{-u}"
-	printf "%s\n" "weather%{A:urxvt -sr -bl -e dash -c 'sleep 0.1 && wmctrl -r \:ACTIVE\: -b add,maximized_horz,maximized_vert && lemon_weather_launcher.sh' &:}%{U#f06292}%{+u}%{F#f06292} $icon %{F#FFFFFF}$text %{-u}%{A}"
+	printf "%s\n" "weather%{A:x-terminal-emulator -e dash -c 'sleep 0.1 && wmctrl -r \:ACTIVE\: -b add,maximized_horz,maximized_vert && lemon_weather_launcher.sh' &:}%{U#f06292}%{+u}%{F#f06292} $icon %{F#FFFFFF}$text %{-u}%{A}"
 }
 
 inhibitor() {
@@ -126,7 +126,7 @@ performance() {
     ram=$(free | awk '/Mem/{printf("%.2f%"), $3/$2*100}')
     swap=$(free | awk '/Swap/{printf("%.2f%"), $3/$2*100}')
 
-    printf "%s\n" "performance%{A:urxvt -sr -bl -e htop &:}%{U#E2B322}%{+u}%{F#E2B322} $(/usr/bin/printf '\ue224') %{F#FFFFFF}$cpu  %{F#E2B322} $(/usr/bin/printf '\ue020') %{F#FFFFFF}$ram  %{F#E2B322} $(/usr/bin/printf '\ue0ab') %{F#FFFFFF}$swap %{-u}%{A}"
+    printf "%s\n" "performance%{A:x-terminal-emulator -e htop &:}%{U#E2B322}%{+u}%{F#E2B322} $(/usr/bin/printf '\ue224') %{F#FFFFFF}$cpu  %{F#E2B322} $(/usr/bin/printf '\ue020') %{F#FFFFFF}$ram  %{F#E2B322} $(/usr/bin/printf '\ue0ab') %{F#FFFFFF}$swap %{-u}%{A}"
 }
 
 partitions() {
