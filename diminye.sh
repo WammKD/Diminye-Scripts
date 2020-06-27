@@ -54,7 +54,10 @@ clear
 		sudo add-apt-repository -y ppa:papirus/papirus
 		sudo apt-get            -y update
 
-		packagelist=(# ubuntu-drivers-common
+		packagelist=(make  # For make, below
+		             gcc
+
+		             # ubuntu-drivers-common
 		             libavcodec-extra       # Allows things like watching Netflix
 
 		             ### notifications
