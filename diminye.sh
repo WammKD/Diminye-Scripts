@@ -43,9 +43,9 @@ clear
 	notify_user "Installing packages"
 		cd /tmp
 
-		wget https://github.com/cdown/clipmenu/archive/5.6.0.tar.gz
-		tar -zxvf 5.6.0.tar.gz
-		cd clipmenu-5.6.0
+		wget https://github.com/cdown/clipmenu/archive/6.1.0.tar.gz
+		tar -zxvf 6.1.0.tar.gz
+		cd clipmenu-6.1.0
 		sudo mv clip* /usr/bin
 
 		cd /tmp
@@ -175,9 +175,9 @@ clear
 
 		cd /tmp
 
-		wget https://github.com/cylgom/ly/releases/download/v0.3.0/ly_0.3.0.zip
-		unzip ly_0.3.0.zip
-		cd ly_0.3.0
+		wget https://github.com/cylgom/ly/releases/download/v0.5.0/ly_0.5.0.zip
+		unzip ly_0.5.0.zip
+		cd ly_0.5.0
 		sudo ./install.sh
 		sudo systemctl enable ly.service
 
