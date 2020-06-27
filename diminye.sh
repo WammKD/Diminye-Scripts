@@ -162,8 +162,6 @@ clear
 		# mkdir -p ~/.local/share/applications
 		# cp /usr/share/applications/rxvt-unicode.desktop ~/.local/share/applications
 		# sed -i 's/urxvt_48x48.xpm/\/usr\/share\/icons\/Papirus\/64x64\/apps\/xterm.svg/g' ~/.local/share/applications/rxvt-unicode.desktop
-		mkdir -p ~/.config/lxterminal
-		cp lxterminal/lxterminal.conf ~/.config/lxterminal
 
 		cd /tmp
 
@@ -221,6 +219,9 @@ clear
 		sudo cp lemonbar/98-lemon_wifi /etc/NetworkManager/dispatcher.d/
 
 		echo 'ALL ALL=(root) NOPASSWD: /usr/local/bin/lemon_brightness.sh' | sudo EDITOR='tee -a' visudo
+		### LXTerminal
+		mkdir -p ~/.config/lxterminal
+		cp lxterminal/lxterminal.conf ~/.config/lxterminal
 		### Network Manager
 		sudo cp network_manager/tz-update /usr/local/bin
 
