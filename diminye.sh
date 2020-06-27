@@ -189,7 +189,7 @@ clear
 		wget https://github.com/elementary/wallpapers/archive/master.tar.gz
 		tar -zxvf master.tar.gz
 		rm master.tar.gz
-		cp wallpapers-master/*.jpg ~/.local/share/wallpapers
+		cp wallpapers-master/backgrounds/*.jpg ~/.local/share/wallpapers
 		echo -e "[xin_-1]\nfile=$HOME/.local/share/wallpapers/Sunset by the Pier.jpg\nmode=0\nbgcolor=#E8E8E7" > ~/.config/nitrogen/bg-saved.cfg
 
 		mkdir -p ~/.local/bin
