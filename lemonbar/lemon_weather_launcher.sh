@@ -1,6 +1,6 @@
 #!/bin/bash
 
-curl https://wttr.in
+wget -nv -O- https://wttr.in
 # wmctrl -r :ACTIVE: -b add,maximized_horz && wmctrl -r :ACTIVE: -b add,maximized_vert
 
 while
