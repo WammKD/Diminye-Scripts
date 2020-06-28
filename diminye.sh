@@ -198,6 +198,7 @@ clear
 		tar -zxvf master.tar.gz
 		cd Diminye-Scripts-master
 		### ACPI
+		sudo mkdir -p /etc/acpi/events
 		sudo cp acpid/* /etc/acpi/events/
 		### Aerosnap
 		sudo cp aerosnap/deklanche /usr/local/bin
