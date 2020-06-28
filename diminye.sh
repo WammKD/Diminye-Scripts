@@ -82,6 +82,7 @@ clear
 		             wmctrl             # for use with deklanche
 		             xdotool            # for use with deklanche
 		             xsel               # for use with clipmenu
+		             bc                 # for use with lemon_brightness.sh
 
 		             ### desktop utilities/general-uses
 		             compton
