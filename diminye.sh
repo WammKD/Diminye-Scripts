@@ -50,6 +50,8 @@ clear
 
 		cd /tmp
 
+		sudo apt-get install --no-install-recommends -y software-properties-common
+
 		sudo add-apt-repository -y ppa:ubuntubudgie/backports
 		sudo add-apt-repository -y ppa:papirus/papirus
 		sudo apt-get            -y update
