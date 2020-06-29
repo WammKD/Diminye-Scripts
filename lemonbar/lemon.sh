@@ -48,7 +48,7 @@ wifi() {
 weather() {
 	data=$(wget https://wttr.in/?format="%c_%t_%m_%p_%w" 2>/dev/null -O - | sed 's/+//g')
 	icon=$(case $(echo $data | cut -d_ -f1) in
-	       	"⛅️")
+	       	"⛅️ ")
 	       		echo $(case $(date '+%H') in
 	       		       	0[0-6]|19|2[0-9])
 	       		       		echo $(/usr/bin/printf '\ue232')
