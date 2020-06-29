@@ -23,7 +23,7 @@ icon=$(if
            [ $(echo $data | awk -F"[][]" '/dB/ { print $6 }') = on ]
        then
 	   if
-	       [ "$(amixer -M -c1 contents | grep -A2 Headphone\ Jack | grep values=o | cut -d = -f 2)" = "on" ]
+	       [ "$(amixer -M -c1 contents | grep -A2 Headphone\ .*Jack | grep values=o | cut -d = -f 2)" = "on" ]
 	   then
 	       case $(echo $level | awk -v len=${#level} '{ string=substr($0, 1, len - 1); print string; }') in
 		   [0-9]|[1-4][0-9])
