@@ -110,7 +110,8 @@ clear
 		             libsecret-1-dev            # For Git functionality
 
 		             ### desktop "panels"
-		             acpi      # for detecting battery and audio jack changes
+		             acpi
+		             acpid     # for detecting battery and audio jack changes
 		             lemonbar
 		             tint2
 
