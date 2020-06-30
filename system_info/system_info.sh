@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if
+	[[ "${1}" == "--version" ]]
+then
+	exit 1
+fi
+
 inxi -Fxz
 
 while
