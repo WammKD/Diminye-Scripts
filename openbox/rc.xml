@@ -774,13 +774,13 @@
 
     <keybind key="XF86MonBrightnessUp">
       <action name="Execute">
-	<command>sudo lemon_brightness.sh +</command>
+	<command>bash -c "$(sudo lemon_brightness.sh +)"</command>
       </action>
     </keybind>
 
     <keybind key="XF86MonBrightnessDown">
       <action name="Execute">
-	<command>sudo lemon_brightness.sh -</command>
+	<command>bash -c "$(sudo lemon_brightness.sh -)"</command>
       </action>
     </keybind>
 
