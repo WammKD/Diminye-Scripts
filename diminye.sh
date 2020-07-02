@@ -87,15 +87,16 @@ clear
 		             p7zip-full
 
 		             ### misc. utilities
-		             x11-utils          # xev,xfontsel,xkill,xprop,etc.
-		             x11-xserver-utils  # xrandr,xset
-		             xfonts-utils       # mkfontdir
-		             mesa-utils         # glxinfo for inxi; it's only 137kB
-		             fontconfig         # fc-cache
-		             wmctrl             # for use with deklanche
-		             xdotool            # for use with deklanche
-		             xsel               # for use with clipmenu
-		             bc                 # for use with lemon_brightness.sh
+		             x11-utils               # xev,xfontsel,xkill,xprop,etc.
+		             x11-xserver-utils       # xrandr,xset
+		             xfonts-utils            # mkfontdir
+		             mesa-utils              # glxinfo for inxi; it's only 137kB
+		             fontconfig              # fc-cache
+		             wmctrl                  # for use with deklanche
+		             xdotool                 # for use with deklanche
+		             xsel                    # for use with clipmenu
+		             bc                      # for use with lemon_brightness.sh
+		             update-notifier-common  # for use with lemon_updates.sh
 
 		             ### desktop utilities/general-uses
 		             compton
