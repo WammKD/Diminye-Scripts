@@ -11,10 +11,30 @@ else
 		x-terminal-emulator -e dash -c "sleep 0.1 && wmctrl -r :ACTIVE: -b add,fullscreen && sudo apt-get update && sudo apt-get dist-upgrade && lemon_updates.sh" &
 	else
 		updates_and_security=$(/usr/lib/update-notifier/apt-check --human-readable | cut -d \  -f 1)
+		number_of_updates=$(echo $updates_and_security | cut -d \  -f 1)
 
-		echo "noti"$(number_of_updates=$(echo $updates_and_security | cut -d \  -f 1)
+		if
+			[ $number_of_updates -ne 0 ]
+		then
+			notify-send "Software Updates Available"                                    \
+			            "$(if
+			               	[ -f /var/run/reboot-required ]
+			               then
+			               	echo "To see changes, reboot after install"
+			               else
+			               	echo "$number_of_updates new system updates are available"
+			               fi)"                                                         \
+			            -i "$(if
+			                  	[ -f /var/run/reboot-required ]
+			                  then
+			                  	echo "gtk-dialog-warning"
+			                  else
+			                  	echo "gtk-dialog-info"
+			                  fi)"                                                      \
+			            -h string:x-canonical-private-synchronous:updates
+		fi
 
-		             if
+		echo "noti"$(if
 		             	[ $number_of_updates -ne 0 ]
 		             then
 		             	second=$(if
