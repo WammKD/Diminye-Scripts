@@ -1,18 +1,20 @@
 #!/bin/dash
 
-if
-    [ "$1" = + ]
-then
-    amixer -M -c1 sset Master 3%+
-elif
-    [ "$1" = - ]
-then
-    amixer -M -c1 sset Master 3%-
-elif
-    [ "$1" = tog ]
-then
-    pulsemixer --toggle-mute
-fi
+notify_p=$(if
+           	[ "$1" = + ]
+           then
+           	amixer -M -c1 sset Master 3%+
+           elif
+           	[ "$1" = - ]
+           then
+           	amixer -M -c1 sset Master 3%-
+           elif
+           	[ "$1" = tog ]
+           then
+           	pulsemixer --toggle-mute
+           else
+           	echo "false"
+           fi)
 
 
 sleep 0.03
