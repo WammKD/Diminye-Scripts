@@ -612,6 +612,14 @@
       </action>
     </keybind>
 
+		<keybind key="W-S-D">
+			<action name="Execute">
+				<command>
+					clipmenuDel.sh
+				</command>
+			</action>
+		</keybind>
+
 		<keybind key="W-u">
 			<action name="Execute">
 				<command>

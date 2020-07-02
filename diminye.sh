@@ -218,6 +218,8 @@ clear
 		sudo cp acpid/* /etc/acpi/events/
 		### Aerosnap
 		sudo cp aerosnap/deklanche /usr/local/bin
+		### Clipmenu
+		sudo cp clipmenu/clipmenuDel.sh /usr/local/bin
 		### Dunst
 		mkdir -p ~/.config/dunst
 		cp dunst/dunstrc ~/.config/dunst/
