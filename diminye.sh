@@ -43,6 +43,17 @@ clear
 	notify_user "Installing packages"
 		cd /tmp
 
+		wget https://github.com/cdown/clipnotify/archive/1.0.2.tar.gz
+		tar -zxvf 1.0.2.tar.gz
+		cd clipnotify-1.0.2
+		sudo apt-get install --no-install-recommends -y libxfixes-dev
+		make
+		sudo mv clipnotify /usr/bin
+		sudo apt-get purge -y libxfixes-dev
+		sudo apt-get autoremove -y
+
+		cd /tmp
+
 		wget https://github.com/cdown/clipmenu/archive/6.1.0.tar.gz
 		tar -zxvf 6.1.0.tar.gz
 		cd clipmenu-6.1.0
