@@ -130,9 +130,9 @@ performance() {
 }
 
 partitions() {
-    result="partitions%{U#5294e2}%{+u}"$(df -h | grep ^/dev/    \
-                                               | grep -v /boot/ \
-                                               | grep -v /snap/ \
+    result="partitions%{U#5294e2}%{+u}"$(df -h | grep ^/dev/   \
+                                               | grep -v /boot \
+                                               | grep -v /snap \
                                                | while read -r partition
                                                  do
                                                      path=$(echo ${partition##*%} | awk '{ string=substr($0, 1); print string; }')
