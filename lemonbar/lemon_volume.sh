@@ -63,4 +63,39 @@ else
 	level=$(echo $level | awk '{ string=substr($0, 1, 3); print string; }')
 fi
 
+if
+	[ "$notify_p" != "false" ]
+then
+	nIcon=$(if
+	        	[ $(echo $data | awk -F"[][]" '/dB/ { print $6 }') = on ]
+	        then
+	        	case $(echo $level | awk -v len=${#level} '{ string=substr($0, 1, len - 2); print string; }') in
+	        		[0-9]|[1-2][0-9]|3[0-3])
+	        			echo "notification-audio-volume-low"
+	        			;;
+	        		3[4-9]|[4-5][0-9]|6[0-7])
+	        			echo "notification-audio-volume-medium"
+	        			;;
+	        		6[8-9]|[7-9][0-9]|100)
+	        			echo "notification-audio-volume-high"
+	        			;;
+	        		*)
+	        			echo "ERROR"
+	        			;;
+	        	esac
+	        else
+	        	echo "notification-audio-volume-muted"
+	        fi)
+	lev=$(if
+	      	[ "$level" = "100" ]
+	      then
+	      	echo "100%%"
+	      else
+	      	echo "$level"
+	      fi)
+	bar=$(seq -s "━" $(echo "scale = 2; $(echo $lev | awk -v len=${#lev} '{ string=substr($0, 1, len - 2); print string; }') / 2.30" | bc | awk '{printf("%d\n",$1 - 0.5)}') | sed 's/[0-9]//g')
+
+	notify-send "$(if [ "$bar" = "" ]; then echo " "; else echo $bar; fi)" -i "$nIcon" -h string:x-canonical-private-synchronous:volume
+fi
+
 echo "volume%{A:x-terminal-emulator -e pulsemixer &:}%{U#eb6637}%{+u}%{F#eb6637} $icon %{F#FFFFFF}$level %{-u}%{A}" > "/tmp/lemon/panel_fifo"
