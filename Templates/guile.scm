@@ -1,6 +1,6 @@
 #!/usr/bin/guile
 !#
 
-(use-modules (jaft functs))
+(use-modules (srfi srfi-1))
 
 (exit 0)
